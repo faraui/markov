@@ -40,7 +40,7 @@ while true; do
         echo -e -n "${BLUE}Warning type 1:${DEF} \""
         word_chars=($(echo "$WORD" | grep -o .))
         for char in "${word_chars[@]}"; do
-            if ! [ "$( echo "$char" )" == "$( echo "$char" | tr -cd [:alnum:] )" ]; then
+            if [ "$( echo "$char" )" != "$( echo "$char" | tr -cd [:alnum:] )" ]; then
                 echo -e -n "${RED}$char${DEF}"
             else
                 echo -n "$char"
