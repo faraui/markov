@@ -47,7 +47,8 @@ while true; do
             fi
         done
         echo -e -n "\" includes non alpha-numerical characters.
-        ${GREEN}Action:${DEF} re-enter the word [Y] or proceed with \"$ALNUM_WORD\" [n]? "; read
+        ${GREEN}Action:${DEF} re-enter the word [Y] or proceed with \"$ALNUM_WORD\" [n]? "
+        read
         if [[ $REPLY =~ ^[nNmMbBтТьЬиИ] ]]; then
             echo "Word processed: $ALNUM_WORD"
             break
