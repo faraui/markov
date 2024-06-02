@@ -7,8 +7,6 @@ if [ $# -eq 0 ]; then
 fi
 
 
-
-
 missing_algorithms=( "missing algorithm(s)" )
 for passed_algorithm in "$@"; do
     if ! [ -f "$passed_algorithm" ]; then
@@ -21,8 +19,6 @@ if [ ${#missing_algorithms[@]} -ne 1 ]; then
        \e[35mUsage:\e[0m $0 <algorithm 1> [algorithm 2] ..." | sed 's/,$/./' >&2
     exit 2
 fi
-
-
 
 
 while true; do
