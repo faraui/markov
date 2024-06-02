@@ -1,19 +1,18 @@
 #!/bin/sh
 
+# Declaring variables of color escape-sequences if these last are processable
 if [ $(echo "\e[0m") != $(echo -e "\e[0m") ]; then
     DEF="\e[0m"; RED="\e[31m"; GREEN="\e[32m"; BLUE="\e[34m"; PURP="\e[35m"
 fi
 
-
-
+# Handling no algorithm(s) passed case
 if [ $# -eq 0 ]; then
     echo -e "${RED}Error type 1:${DEF} no algorithm(s) passed.
        ${PURP}Usage:${DEF} $0 [options] <algorithm 1> [algorithm 2] ..." >&2
     exit 2
 fi
 
-
-
+# Handling missing algorithm(s) passed case
 for passed_algorithm in "$@"; do
     if ! [ -f "$passed_algorithm" ]; then
         missing_algorithms+=("$passed_algorithm,")
@@ -26,8 +25,7 @@ if [ ${#missing_algorithms[@]} -ne 0 ]; then
     exit 2
 fi
 
-
-
+# Handling word to be processed
 while true; do
     read -e -p "Word processed: " WORD
     ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
