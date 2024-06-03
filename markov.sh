@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Inirial configuration process
-CONFIG="~/.config/markov/markov.conf"
+CONFIG="~/.config/markov/markov.conf" # Default is ~/.config/markov/markov.conf
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)
   if [ ! -e $CONFIG ]; then
