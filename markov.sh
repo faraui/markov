@@ -7,7 +7,7 @@ if [ ! -s $CONFIG ]; then
   if [ ! -e $CONFIG ]; then
     touch $CONFIG
   fi
-  echo -e "help=0
+  echo "help=0
 file=0
 nocolors=0" > $CONFIG
 fi
