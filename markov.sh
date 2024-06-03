@@ -1,5 +1,23 @@
 #!/bin/sh
 
+# Configuration
+if [ ! -s ~/.config/markov/markov.conf ]; then
+    mkdir -p ~/.config/markov/
+    if [ ! -e ~/.config/markov/markov.conf ]; then
+        touch ~/.config/markov/markov.conf
+    echo "help=0
+file=0
+nocolors=0" > ~/.config/markov/markov.conf
+    fi
+fi
+
+source ~/.config/markov/markov.conf
+
+# Handling options
+if [ $help -eq 1 ]; then
+    echo $help
+fi
+
 # Declaring variables of color escape-sequences if they are processable
 if [ $(echo "\e[0m") != $(echo -e "\e[0m") ]; then
     DEF="\e[0m"
