@@ -8,8 +8,9 @@ if [ ! -s $CONFIG ]; then
     touch $CONFIG
   fi
   echo -e "HELP=0
-FILE=0
-NO_COLORS=0" > $CONFIG
+NO_COLORS=0
+VERBOSE=0
+FILE=0" > $CONFIG
 fi
 
 source $CONFIG
@@ -34,7 +35,7 @@ fi
 # Handling no algorithm(s) passed case
 if [ $# -eq 0 ]; then
   echo -e "${RED}Error type 1:${DEF} no algorithm(s) passed.
-       ${PURP}Usage:${DEF} $0 [POSIX OR GNU OPTIONS] <ALGORITHM 1> [ALGORITHM 2] ..." >&2
+       ${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <algorithm 1> [algorithm 2] ..." >&2
   exit 2
 fi
 
@@ -47,7 +48,7 @@ done
 
 if [ ${#missing_algorithms[@]} -ne 0 ]; then
   echo -e "${RED}Error type 2:${DEF} missing algorithm(s) ${missing_algorithms[@]}
-       ${PURP}Usage:${DEF} $0 [POSIX OR GNU OPTIONS] <ALGORITHM 1> [ALGORITHM 2] ..." | sed 's/,$/./' >&2
+       ${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <algorithm 1> [algorithm 2] ..." | sed 's/,$/./' >&2
   exit 2
 fi
 
