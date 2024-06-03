@@ -58,12 +58,12 @@ while true; do
   ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
   if [ "$WORD" != "$ALNUM_WORD" ]; then
     echo -e -n "${BLUE}Warning type 1:${DEF} \""
-    word_chars=($(echo "$WORD" | grep -o .))
-    for char in "${word_chars[@]}"; do
-      if [ "$( echo "$char" )" != "$( echo "$char" | tr -cd [:alnum:] )" ]; then
-        echo -e -n "${RED}$char${DEF}"
+    WORD_CHARS=($(echo "$WORD" | grep -o .))
+    for CHAR in "${WORD_CHARS[@]}"; do
+      if [ "$( echo "$CHAR" )" != "$( echo "$CHAR" | tr -cd [:alnum:] )" ]; then
+        echo -e -n "${RED}$CHAR${DEF}"
       else
-        echo -n "$char"
+        echo -n "$CHAR"
       fi
     done
     echo -e -n "\" includes non alpha-numerical characters.
