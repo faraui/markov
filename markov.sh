@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Configuration
+# Inirial configuration process
 CONFIG="~/.config/markov/markov.conf"
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)
