@@ -16,6 +16,7 @@ fi
 source $CONFIG
 unset CONFIG
 
+
 # Handling options
 if [[ $HELP -ne 0 ]]; then
   echo $HELP
