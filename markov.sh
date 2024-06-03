@@ -1,28 +1,28 @@
 #!/bin/sh
 
-# Inirial configuration process
-CONFIG="~/.config/markov/markov.conf" # Default is ~/.config/markov/markov.conf
+# Configuration
+CONFIG="~/.config/markov/markov.conf" # Default: ~/.config/markov/markov.conf
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)
   if [ ! -e $CONFIG ]; then
     touch $CONFIG
   fi
-  echo "help=0
-file=0
-nocolors=0" > $CONFIG
+  echo -e "HELP=0
+FILE=0
+NO_COLORS=0" > $CONFIG
 fi
 
 source $CONFIG
 unset CONFIG
 
 # Handling options
-if ! [ $help -eq 0 ]; then
-  echo $help
+if [[ $HELP -ne 0 ]]; then
+  echo $HELP
 fi
 
 
 # Declaring variables of color escape-sequences if they are processable
-if [ $(echo "\e[0m") != $(echo -e "\e[0m") ]; then
+if [ $(echo "e[0m") != $(echo -e "e[0m") ] || [[ $NO_COLORS -ne 0  ]]; then
   DEF="\e[0m"
   RED="\e[31m"
   GREEN="\e[32m"
