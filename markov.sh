@@ -21,7 +21,7 @@ if [[ $HELP -ne 0 ]]; then
 fi
 
 
-# Declaring variables of color escape-sequences if they are processable
+# Declaring variables of color escape-sequences if they are processable and requested
 if [ $(echo "e[0m") != $(echo -e "e[0m") ] || [[ $NO_COLORS -ne 0  ]]; then
   DEF="\e[0m"
   RED="\e[31m"
