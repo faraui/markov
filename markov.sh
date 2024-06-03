@@ -5,10 +5,10 @@ if [ ! -s ~/.config/markov/markov.conf ]; then
     mkdir -p ~/.config/markov/
     if [ ! -e ~/.config/markov/markov.conf ]; then
         touch ~/.config/markov/markov.conf
+    fi
     echo "help=0
 file=0
 nocolors=0" > ~/.config/markov/markov.conf
-    fi
 fi
 
 source ~/.config/markov/markov.conf
