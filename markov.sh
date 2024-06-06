@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # Configuration
-CONFIG="~/.config/markov/markov.conf" # Default: ~/.config/markov/markov.conf
+CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)
   if [ ! -e $CONFIG ]; then
     touch $CONFIG
   fi
-  echo -e "HELP=0
+  echo "HELP=0
 NO_COLORS=0
 VERBOSE=0
 FILE=0" > $CONFIG
