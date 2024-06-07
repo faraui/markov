@@ -52,10 +52,7 @@ done
 
 # Declaring variables of color escape-sequences if they are processable and requested
 if [ -t 1 ] && [ $(echo "\033[0m") != $(echo -e "\033[0m") ] && [ $NO_COLORS -eq 0 ]; then
-  DEF="\033[0m"
-  RED="\033[31m"
-  BLUE="\033[34m"
-  PURP="\033[35m"
+  DEF="\033[0m"; RED="\033[31m"; BLUE="\033[34m"; PURP="\033[35m"
 fi
 
 # Unknown argument(s) passed case
