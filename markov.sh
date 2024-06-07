@@ -76,7 +76,8 @@ if [ ${#FILES[@]} -eq 0 ]; then
 fi
 
 # Processing sequences if they are requested
-if [ "$(if [ $SEQUENCE -eq 1 ]; then
+if [ "$(
+  if [ $SEQUENCE -eq 1 ]; then
     for SEQ in ${FILES[@]}; do
       echo >> $SEQ
       sed -i '/^[[:space:]]*$/d; s/[[:space:]]*$//g' $SEQ
