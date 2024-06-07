@@ -106,9 +106,9 @@ if [ "$(awk -v DEF=$DEF -v RED=$RED '
   }' ${ALGORITHMS[@]} | tee /dev/stderr)" ]; then exit 2
 fi
 
-# Handling word to be processed
+# Processing input word
 while true; do
-  read -e -p "Word processed: " WORD
+  read -e -p "Input word: " WORD
   ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
   if [ "$WORD" != "$ALNUM_WORD" ]; then
     echo -e -n "${BLUE}Warning.${DEF} "
@@ -124,7 +124,7 @@ while true; do
     echo -n "Proceed with $ALNUM_WORD [n] or re-enter the word [Y]? "
     read
     if [[ $REPLY =~ ^[nNmMbBтТьЬиИ] ]]; then
-      echo "Word processed: $ALNUM_WORD"
+      echo "Input word: $ALNUM_WORD"
       break
     fi
   else
