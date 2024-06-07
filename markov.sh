@@ -51,18 +51,11 @@ for ARGUMENT in "$@"; do
 done
 
 # Declaring variables of color escape-sequences if they are processable and requested
-if [ -t 1 ] && [ $(echo "\e[0m") != $(echo -e "\e[0m") ] && [ $NO_COLORS -eq 0 ]; then
-  DEF="\e[0m"
-  RED="\e[31m"
-  BLUE="\e[34m"
-  PURP="\e[35m"
-fi
-
-# No file passed case
-if [ ${#FILES[@]} -eq 0 ]; then
-  echo -e "${RED}Error.${DEF} No file passed" >&2
-  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
-  exit 2
+if [ -t 1 ] && [ $(echo "\033[0m") != $(echo -e "\033[0m") ] && [ $NO_COLORS -eq 0 ]; then
+  DEF="\033[0m"
+  RED="\033[31m"
+  BLUE="\033[34m"
+  PURP="\033[35m"
 fi
 
 # Unknown argument(s) passed case
@@ -75,6 +68,25 @@ if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]; then
   fi
   echo " following argument is neither option nor file: ${UNKNOWN_ARGUMENTS[@]}" >&2
   echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
+  exit 2
+fi
+
+# No file passed case
+if [ ${#FILES[@]} -eq 0 ]; then
+  echo -e "${RED}Error.${DEF} No file passed" >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
+  exit 2
+fi
+
+# Incorrect second word case
+if [ "$(awk -v DEF=$DEF -v RED=$RED '
+{
+  if ($2 != "," && $2 != ".") {
+    print RED "Error." DEF " File " FILENAME ", line " FNR \
+    ": the second word must be comma or period; found " RED $2 DEF ""
+  }
+}
+' ${FILES[@]} | tee /dev/stderr)" ]; then
   exit 2
 fi
 
@@ -103,3 +115,41 @@ while true; do
     break
   fi
 done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###
