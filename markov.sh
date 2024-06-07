@@ -25,7 +25,7 @@ for ARGUMENT in "$@"; do
       ;;
     -rc|--reset-config)
       rm -rf $CONFIG
-      echo "Reset of the configuration file \"$CONFIG\" has been performed"
+      echo "Reset of the configuration file $CONFIG has been performed"
       exit 0
       ;;
     -f|--format)
@@ -78,6 +78,13 @@ if [ ${#FILES[@]} -eq 0 ]; then
   exit 2
 fi
 
+# Processing sequences if they are requested
+if [ $SEQUENCE -eq 1 ]; then
+  echo
+else
+  ALGORITHMS=${FILES[@]}
+fi
+
 # Incorrect second word case
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
 {
@@ -85,7 +92,7 @@ if [ "$(awk -v DEF=$DEF -v RED=$RED '
     print RED "Error." DEF " File " FILENAME ", line " FNR \
     ": the second word must be comma or period; found " RED $2 DEF ""
   }
-}' ${FILES[@]} | tee /dev/stderr)" ]; then
+}' ${ALGORITHMS[@]} | tee /dev/stderr)" ]; then
   exit 2
 fi
 
