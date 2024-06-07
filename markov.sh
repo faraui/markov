@@ -1,65 +1,89 @@
 #!/bin/sh
 
-# Configuration
+# Configuration process
 CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)
   if [ ! -e $CONFIG ]; then
     touch $CONFIG
-  fi
-  echo "HELP=0
-NO_COLORS=0
-VERBOSE=0
-FILE=0" > $CONFIG
-fi
+  fi                            # Default:
+  echo "NO_COLORS=0" >> $CONFIG # NO_COLORS=0
+  echo "VERBOSE=1" >> $CONFIG   # VERBOSE=1
+  echo "SEQUENCE=0" >> $CONFIG  # SEQUENCE=0
+fi; source $CONFIG
 
-source $CONFIG
-unset CONFIG
-
-
-# Handling options
-if [[ $HELP -ne 0 ]]; then
-  echo $HELP
-fi
-
+# Processing passed arguments
+for ARGUMENT in "$@"; do
+  case "$ARGUMENT" in
+    -h|--help)
+      echo "Help: Any ACM A. M. Turing Award..."
+      exit 0
+      ;;
+    -u|--usage)
+      echo "Usage: $0 [GNU or POSIX style options] <file 1> [file 2] ..."
+      exit 0
+      ;;
+    -rc|--reset-config)
+      rm -rf $CONFIG
+      echo "Reset of the configuration file \"$CONFIG\" has been performed"
+      exit 0
+      ;;
+    -f|--format)
+      # ...
+      ;;
+    -nc|--no-colors)
+      NO_COLORS=1
+      ;;
+    -v|--verbose)
+      VERBOSE=1
+      ;;
+    -s|--sequence)
+      SEQUENCE=1
+      ;;
+    *)
+      if [ -f "$ARGUMENT" ]; then
+        FILES+=("$ARGUMENT")
+      else
+        UNKNOWN_ARGUMENTS+=("$ARGUMENT")
+      fi
+      ;;
+  esac
+done
 
 # Declaring variables of color escape-sequences if they are processable and requested
-if [ $(echo "e[0m") != $(echo -e "e[0m") ] || [[ $NO_COLORS -ne 0  ]]; then
+if [ -t 1 ] && [ $(echo "\e[0m") != $(echo -e "\e[0m") ] && [ $NO_COLORS -eq 0 ]; then
   DEF="\e[0m"
   RED="\e[31m"
-  GREEN="\e[32m"
   BLUE="\e[34m"
   PURP="\e[35m"
 fi
 
-
-# Handling no algorithm(s) passed case
-if [ $# -eq 0 ]; then
-  echo -e "${RED}Error type 1:${DEF} no algorithm(s) passed.
-       ${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <algorithm 1> [algorithm 2] ..." >&2
+# No file passed case
+if [ ${#FILES[@]} -eq 0 ]; then
+  echo -e "${RED}Error.${DEF} No file passed" >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
   exit 2
 fi
 
-# Handling missing algorithm(s) passed case
-for passed_algorithm in "$@"; do
-  if ! [ -f "$passed_algorithm" ]; then
-    missing_algorithms+=("$passed_algorithm,")
+# Unknown argument(s) passed case
+if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]; then
+  echo -e -n "${RED}Error.${DEF}" >&2
+  if [ ${#UNKNOWN_ARGUMENTS[@]} -eq 1 ]; then
+    echo -n " The" >&2
+  else
+    echo -n " Each" >&2
   fi
-done
-
-if [ ${#missing_algorithms[@]} -ne 0 ]; then
-  echo -e "${RED}Error type 2:${DEF} missing algorithm(s) ${missing_algorithms[@]}
-       ${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <algorithm 1> [algorithm 2] ..." | sed 's/,$/./' >&2
+  echo " following argument is neither option nor file: ${UNKNOWN_ARGUMENTS[@]}" >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
   exit 2
 fi
-
 
 # Handling word to be processed
 while true; do
   read -e -p "Word processed: " WORD
   ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
   if [ "$WORD" != "$ALNUM_WORD" ]; then
-    echo -e -n "${BLUE}Warning type 1:${DEF} \""
+    echo -e -n "${BLUE}Warning.${DEF} "
     WORD_CHARS=($(echo "$WORD" | grep -o .))
     for CHAR in "${WORD_CHARS[@]}"; do
       if [ "$( echo "$CHAR" )" != "$( echo "$CHAR" | tr -cd [:alnum:] )" ]; then
@@ -68,8 +92,8 @@ while true; do
         echo -n "$CHAR"
       fi
     done
-    echo -e -n "\" includes non alpha-numerical characters.
-        ${GREEN}Action:${DEF} re-enter the word [Y] or proceed with \"$ALNUM_WORD\" [n]? "
+    echo " includes non alpha-numerical characters"
+    echo -n "Proceed with $ALNUM_WORD [n] or re-enter the word [Y]? "
     read
     if [[ $REPLY =~ ^[nNmMbBтТьЬиИ] ]]; then
       echo "Word processed: $ALNUM_WORD"
