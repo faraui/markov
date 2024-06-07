@@ -20,7 +20,7 @@ for ARGUMENT in "$@"; do
       exit 0
       ;;
     -u|--usage)
-      echo "Usage: $0 [POSIX or GNU style options] <file 1> [file 2] ..."
+      echo "Usage: $0 [GNU or POSIX style options] <file 1> [file 2] ..."
       exit 0
       ;;
     -rc|--reset-config)
@@ -61,7 +61,7 @@ fi
 # No file passed case
 if [ ${#FILES[@]} -eq 0 ]; then
   echo -e "${RED}Error.${DEF} No file passed" >&2
-  echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <file 1> [file 2] ..." >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
   exit 2
 fi
 
@@ -74,7 +74,7 @@ if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]; then
     echo -n " Each" >&2
   fi
   echo " following argument is neither option nor file: ${UNKNOWN_ARGUMENTS[@]}" >&2
-  echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <file 1> [file 2] ..." >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
   exit 2
 fi
 
