@@ -85,8 +85,7 @@ if [ "$(awk -v DEF=$DEF -v RED=$RED '
     print RED "Error." DEF " File " FILENAME ", line " FNR \
     ": the second word must be comma or period; found " RED $2 DEF ""
   }
-}
-' ${FILES[@]} | tee /dev/stderr)" ]; then
+}' ${FILES[@]} | tee /dev/stderr)" ]; then
   exit 2
 fi
 
