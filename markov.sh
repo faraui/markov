@@ -80,16 +80,34 @@ fi
 
 # Processing sequences if they are requested
 if [ $SEQUENCE -eq 1 ]; then
-  echo
+  for SEQ in ${FILES[@]}; do
+    echo >> $SEQ
+    sed -i '/^[[:space:]]*$/d; s/[[:space:]]*$//g' $SEQ
+    LINENR=0
+    while read ALGORITHM; do
+      LINENR=$((LINENR + 1))
+      if [ -f "$ALGORITHM" ]; then
+        ALGORITHMS+=("$ALGORITHM")
+      else
+        echo -e -n "${RED}Error.${DEF} Algorithm file $ALGORITHM from line $LINENR" >&2
+        echo " of sequence file $SEQ does not exist" >&2
+        TO_EXIT="y"
+      fi
+    done < "$SEQ"
+  done
+  if ! [ -z $TO_EXIT ]; then
+    exit 2
+  fi
 else
   ALGORITHMS=${FILES[@]}
 fi
+unset FILES
 
 # Incorrect second word case
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
 {
   if ($2 != "," && $2 != ".") {
-    print RED "Error." DEF " File " FILENAME ", line " FNR \
+    print RED "Error." DEF " Algorithm file " FILENAME ", line " FNR \
     ": the second word must be comma or period; found " RED $2 DEF ""
   }
 }' ${ALGORITHMS[@]} | tee /dev/stderr)" ]; then
