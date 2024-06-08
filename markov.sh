@@ -25,7 +25,7 @@ do case "$ARGUMENT" in
      ;;
    -rc|--reset-config)
      echo -n > $CONFIG
-     echo "Reset of the configuration file $CONFIG has been performed"
+     echo "Reset of the config file $CONFIG has been performed"
      exit 0
      ;;
    -nc|--no-colors) NO_COLORS=1 ;;
