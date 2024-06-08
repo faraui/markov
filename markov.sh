@@ -123,7 +123,7 @@ fi; unset FILES
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
   {
     if ($2 != "," && $2 != ".") {
-      print RED "Error." DEF " Algorithm file " FILENAME ", line " FNR \
+      print RED "Error." DEF " Algorithm " FILENAME ", line " FNR \
       ": the second word must be comma or period; found " RED $2 DEF ""
     }
   }' ${ALGORITHMS[@]} | tee /dev/stderr)" ]; then exit 2
