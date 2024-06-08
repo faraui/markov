@@ -127,7 +127,7 @@ do read -e -p "Input word: " WORD
    then echo -e -n "${BLUE}Warning.${DEF} "
         WORD_CHARS=($(echo "$WORD" | grep -o .))
         for CHAR in "${WORD_CHARS[@]}"
-        do if [ "$( echo "$CHAR" )" != "$( echo "$CHAR" | tr -cd [:alnum:] )" ]
+        do if [ "$(echo "$CHAR")" != "$(echo "$CHAR" | tr -cd [:alnum:])" ]
            then echo -e -n "${RED}$CHAR${DEF}"
            else echo -n "$CHAR"
            fi
