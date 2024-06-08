@@ -3,10 +3,7 @@
 # Configuration process
 CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
 if [ ! -s $CONFIG ]; then
-  mkdir -p $(dirname $CONFIG)
-  if [ ! -e $CONFIG ]; then
-    touch $CONFIG
-  fi                            # Default:
+  mkdir -p $(dirname $CONFIG)   # Default:
   echo "NO_COLORS=0" >> $CONFIG # NO_COLORS=0
   echo "VERBOSE=1" >> $CONFIG   # VERBOSE=1
   echo "SEQUENCE=0" >> $CONFIG  # SEQUENCE=0
@@ -24,7 +21,7 @@ for ARGUMENT in "$@"; do
       exit 0
       ;;
     -rc|--reset-config)
-      rm -rf $CONFIG
+      echo -n > $CONFIG
       echo "Reset of the configuration file $CONFIG has been performed"
       exit 0
       ;;
@@ -39,7 +36,15 @@ for ARGUMENT in "$@"; do
       ;;
     *)
       if [ -f "$ARGUMENT" ]; then
-        FILES+=("$ARGUMENT")
+        sed -i '/^[[:space:]]*$/d' $ARGUMENT
+        if [ -s "$ARGUMENT" ]; then
+          FILES+=("$ARGUMENT")
+          if [ "$(tail -c 1 $ARGUMENT)" != "" ]; then
+            echo >> $ARGUMENT
+          fi
+        else
+          EMPTY_FILES+=("$ARGUMENT")
+        fi
       else
         UNKNOWN_ARGUMENTS+=("$ARGUMENT")
       fi
@@ -65,6 +70,19 @@ if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]; then
   exit 2
 fi
 
+# Empty files passed case
+if [ ${#EMPTY_FILES[@]} -ne 0 ]; then
+  echo -e -n "${RED}Error.${DEF}" >&2
+  if [ ${#EMPTY_FILES[@]} -eq 1 ]; then
+    echo -n " The" >&2
+  else
+    echo -n " Each" >&2
+  fi
+  echo " following file is empty: ${EMPTY_FILES[@]}" >&2
+  echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
+  exit 2
+fi
+
 # No file passed case
 if [ ${#FILES[@]} -eq 0 ]; then
   echo -e "${RED}Error.${DEF} No file passed" >&2
@@ -76,16 +94,21 @@ fi
 if [ "$(
   if [ $SEQUENCE -eq 1 ]; then
     for SEQ in ${FILES[@]}; do
-      echo >> $SEQ
-      sed -i '/^[[:space:]]*$/d; s/[[:space:]]*$//g' $SEQ
       LINENR=0
       while read ALGORITHM; do
         LINENR=$((LINENR + 1))
         if [ -f "$ALGORITHM" ]; then
-          ALGORITHMS+=("$ALGORITHM")
+          sed -i '/^[[:space:]]*$/d' $ALGORITHM
+          if [ -s "$ALGORITHM" ]; then
+            FILES+=("$ALGORITHM")
+            if [ "$(tail -c 1 $ALGORITHM)" != "" ]; then
+              echo >> $ALGORITHM
+            fi
+          else
+            echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is empty"
+          fi
         else
-          echo -e -n "${RED}Error.${DEF} Algorithm file $ALGORITHM from line $LINENR"
-          echo " of sequence file $SEQ does not exist"
+          echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is not present"
         fi
       done < "$SEQ"
     done
@@ -128,41 +151,5 @@ while true; do
     break
   fi
 done
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ###
