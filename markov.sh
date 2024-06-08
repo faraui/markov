@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Configuration process
 CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
