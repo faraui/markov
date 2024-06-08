@@ -2,6 +2,7 @@
 
 # Configuration process
 CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
+sed -i '/^[[:space:]]*$/d' $CONFIG
 if [ ! -s $CONFIG ]; then
   mkdir -p $(dirname $CONFIG)   # Default:
   echo "NO_COLORS=0" >> $CONFIG # NO_COLORS=0
