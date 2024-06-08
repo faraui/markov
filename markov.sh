@@ -28,15 +28,9 @@ do case "$ARGUMENT" in
      echo "Reset of the configuration file $CONFIG has been performed"
      exit 0
      ;;
-   -nc|--no-colors)
-     NO_COLORS=1
-     ;;
-   -v|--verbose)
-     VERBOSE=1
-     ;;
-   -s|--sequence)
-     SEQUENCE=1
-     ;;
+   -nc|--no-colors) NO_COLORS=1 ;;
+   -v|--verbose) VERBOSE=1 ;;
+   -s|--sequence) SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
      then echo >> $ARGUMENT
