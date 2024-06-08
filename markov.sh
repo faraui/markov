@@ -8,7 +8,7 @@ if [ -f $CONFIG ]; then
 fi
 if [ ! -s $CONFIG ]; then       # Default:
   echo "NO_COLORS=0" >> $CONFIG # NO_COLORS=0
-  echo "VERBOSE=1" >> $CONFIG   # VERBOSE=1
+  echo "VERBOSE=0" >> $CONFIG   # VERBOSE=0
   echo "SEQUENCE=0" >> $CONFIG  # SEQUENCE=0
 fi; source $CONFIG
 
