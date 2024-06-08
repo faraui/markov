@@ -100,7 +100,7 @@ if [ "$(
         if [ -f "$ALGORITHM" ]; then
           sed -i '/^[[:space:]]*$/d' $ALGORITHM
           if [ -s "$ALGORITHM" ]; then
-            FILES+=("$ALGORITHM")
+            ALGORITHMS+=("$ALGORITHM")
             if [ "$(tail -c 1 $ALGORITHM)" != "" ]; then
               echo >> $ALGORITHM
             fi
@@ -151,5 +151,3 @@ while true; do
     break
   fi
 done
-
-###
