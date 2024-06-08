@@ -28,9 +28,6 @@ for ARGUMENT in "$@"; do
       echo "Reset of the configuration file $CONFIG has been performed"
       exit 0
       ;;
-    -f|--format)
-      # ...
-      ;;
     -nc|--no-colors)
       NO_COLORS=1
       ;;
