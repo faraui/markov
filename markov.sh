@@ -144,7 +144,7 @@ do read -e -p "Input word: " WORD
    fi
 done
 
-# Interpreter
+# No-verbose interpreter
 gawk -v WORD=$WORD '
 {
   if ($1 == _) { $1 = "^" }
@@ -161,5 +161,6 @@ gawk -v WORD=$WORD '
 }
 
 END {
+  print ""
   print WORD
 }' ${ALGORITHMS[@]}
