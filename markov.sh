@@ -111,8 +111,7 @@ unset FILES
 
 # Incorrect second word case
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
-  {
-    if ($1 != "#" && $2 != "," && $2 != ".") {
+  { if ($1 != "#" && $2 != "," && $2 != ".") {
       print RED "Error." DEF " Algorithm file " FILENAME ", line " FNR \
       ": the second word must be comma or period; found " RED $2 DEF ""
     }
@@ -146,8 +145,7 @@ done
 
 # No-verbose interpreter
 gawk -v WORD=$WORD '
-{
-  if ($1 == "#") { next }
+{ if ($1 == "#") { next }
   if ($1 == "_") { $1 = "^" }
   if ($3 == "_") { $3 = "" }
   if (sub($1, $3, WORD)) {
@@ -159,9 +157,7 @@ gawk -v WORD=$WORD '
     }
     nextfile
   }
-}
-
-END {
+} END {
   print ""
   print WORD
 }' ${ALGORITHMS[@]}
