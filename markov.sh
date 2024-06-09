@@ -144,7 +144,7 @@ do read -e -p "Input word: " WORD
 done
 
 # No-verbose interpreter
-gawk -v WORD=$WORD '
+awk -v WORD=$WORD '
 { if ($3 == "^") { $3 = "" }
   if (sub($1, $3, WORD)) {
     if ($2 == ",") {
