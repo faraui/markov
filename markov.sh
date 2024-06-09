@@ -21,7 +21,7 @@ do case "$ARGUMENT" in
      exit 0
      ;;
    -u|--usage)
-     echo "Usage: $0 [POSIX or GNU style options] <file 1> [file 2] ..."
+     echo "Usage: $0 [GNU or POSIX style options] <file 1> [file 2] ..."
      exit 0
      ;;
    -rc|--reset-config)
@@ -62,7 +62,7 @@ then echo -e -n "${RED}Error.${DEF}" >&2
      else echo -n " Each" >&2
      fi
      echo " following argument is neither option nor file: ${UNKNOWN_ARGUMENTS[@]}" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <file 1> [file 2] ..." >&2
+     echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
      exit 2
 fi
 
@@ -74,14 +74,14 @@ then echo -e -n "${RED}Error.${DEF}" >&2
      else echo -n " Each" >&2
      fi
      echo " following file is empty: ${EMPTY_FILES[@]}" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <file 1> [file 2] ..." >&2
+     echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
      exit 2
 fi
 
 # No file passed case
 if [ ${#FILES[@]} -eq 0 ]
 then echo -e "${RED}Error.${DEF} No file passed" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] <file 1> [file 2] ..." >&2
+     echo -e "${PURP}Usage:${DEF} $0 [GNU or POSIX style options] <file 1> [file 2] ..." >&2
      exit 2
 fi
 
@@ -144,15 +144,22 @@ do read -e -p "Input word: " WORD
    fi
 done
 
-# Interpreter itself =)
+# Interpreter
 gawk -v WORD=$WORD '
 {
+  if ($1 == _) { $1 = "^" }
+  if ($3 == _) { $3 = "" }
   if (sub($1, $3, WORD)) {
     if ($2 == ",") {
-      rewind()
+     for (i = ARGC; i > ARGIND; i--)
+       ARGV[i] = ARGV[i - 1]
+     ARGC++
+     ARGV[ARGIND + 1] = FILENAME
     }
+    nextfile
   }
 }
+
 END {
   print WORD
 }' ${ALGORITHMS[@]}
