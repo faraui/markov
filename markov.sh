@@ -86,28 +86,30 @@ then echo -e "${RED}Error.${DEF} No file passed" >&2
 fi
 
 # Processing sequences if they are requested
-if [ "$(
-  if [ $SEQUENCE -eq 1 ]
-  then for SEQ in ${FILES[@]}
-       do LINENR=0
-          while read ALGORITHM
-          do LINENR=$((LINENR + 1))
-             if [ -f "$ALGORITHM" ]
-             then echo >> $ALGORITHM
-                  sed -i '/^[[:space:]]*$/d' $ALGORITHM
-                  if [ -s "$ALGORITHM" ]
-                  then ALGORITHMS+=("$ALGORITHM")
-                  else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is empty"
-                  fi
-             else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is not present"
-             fi
-          done < "$SEQ"
-       done
-  fi | tee /dev/stderr)" ]
-then exit 2
+if [ $SEQUENCE -eq 1 ]
+then for SEQ in ${FILES[@]}
+     do LINENR=0
+        while read ALGORITHM
+        do LINENR=$((LINENR + 1))
+           if [ -f "$ALGORITHM" ]
+           then echo >> $ALGORITHM
+                sed -i '/^[[:space:]]*$/d' $ALGORITHM
+                if [ -s "$ALGORITHM" ]
+                then ALGORITHMS+=("$ALGORITHM")
+                else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is empty" >&2
+                     TO_EXIT="y"
+                fi
+           else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is not present" >&2
+                TO_EXIT="y"
+           fi
+        done < $SEQ
+     done
 else ALGORITHMS=${FILES[@]}
+     unset FILES
 fi
-unset FILES
+if [ "$TO_EXIT" = "y" ]
+then exit 2 
+fi
 
 # Incorrect second word case
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
