@@ -5,10 +5,11 @@ CONFIG=~/.config/markov/markov.conf # Default: ~/.config/markov/markov.conf
 echo >> $CONFIG
 sed -i '/^[[:space:]]*$/d' $CONFIG
 if [ ! -s $CONFIG ]
-then mkdir -p $(dirname $CONFIG)   # Default:
-     echo "NO_COLORS=0" >> $CONFIG # NO_COLORS=0
-     echo "VERBOSE=1" >> $CONFIG   # VERBOSE=1
-     echo "SEQUENCE=0" >> $CONFIG  # SEQUENCE=0
+then mkdir -p $(dirname $CONFIG) # Default:
+     { echo "NO_COLORS=0"        # NO_COLORS=0
+       echo "VERBOSE=0"          # VERBOSE=0
+       echo "SEQUENCE=0"         # SEQUENCE=0
+     } >> $CONFIG
 fi
 source $CONFIG
 
