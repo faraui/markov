@@ -1,45 +1,64 @@
-.TH MARKOV 1 2024-06-10
+.TH MARKOV 1 2024-06-11
 
 .SH NAME
 markov \- Markov algorithms interpreter and collection
 
 .SH SYNOPSIS
-.B markov
+.B ./markov.sh
 [\fB\-h\fP|\fB\--help\fP]
 [\fB\-u\fP|\fB\--usage\fP]
 [\fB\-rc\fP|\fB\--reset-config\fP]
 .br
-.B markov
+.B ./markov.sh
 [\fB\-nc\fP|\fB\--no-colors\fP]
 [\fB\-v\fP|\fB\--verbose\fP]
 \fIalgorithm\-file\fP ...
 .br
-.B markov
+.B ./markov.sh
 [\fB\-nc\fP|\fB\--no-colors\fP]
 [\fB\-v\fP|\fB\--verbose\fP]
-\fB\-s\fP
-\fIsequence\-file\fP ...
-.br
-.B markov
-[\fB\-nc\fP|\fB\--no-colors\fP]
-[\fB\-v\fP|\fB\--verbose\fP]
-\fB\--sequence\fP
+\fB\-s\fP|\fB\--sequence\fP
 \fIsequence\-file\fP ...
 
 .SH DESCRIPTION
-.B markov
+.B markov.sh
 
 .SH OPTIONS
-.B markov
+.B markov.sh
 
 .SH CONFIGURATION
+.TP
+The configuration allows each following option to be set or unset if not passed as an argument:
+\fB\--no-colors\fP
+.br
+\fB\--verbose\fP
+.br
+\fB\--sequence\fP
+
+.PP
 Configuration is done by editing the configuration file.
 .br
-The default absolute path of the configuration file is \fB~/.config/markov/markov.conf\fP.
+In line 4 of \fBmarkov.sh\fP the absolute path of the configuration file is set.
 .br
-The default absolute path of the configuration file is set in line 4 of \fBmarkov.sh\fP.
+In the unmodified \fBmarkov.sh\fP, this absolute path is \fB~/.config/markov/markov.conf\fP.
+
+.TP
+The configuration file is set automatically once \fBmarkov.sh\fP is launched, if any of these are true:
+a) option \fB\-rc\fP|\fB\--reset-config\fP is passed
 .br
-The configuration file allows the following options to be set or unset by default:
+b) the configuration file is empty
+.br
+c) the configuration file is not present
+.br
+
+.PP
+In lines 9-11 of \fBmarkov.sh\fP, the data of the configuration file that is thus set can be modified.
+.br
+In the unmodified \fBmarkov.sh\fP, this data is \fBNO_COLORS=0; VERBOSE=0; SEQUENCE=0\fP.
+.br
+With such configuration file data, each corresponding option is unset if not passed as an argument.
+.br
+\fB1\fP written respectively in the configuration file will give the opposite result for an option.
 
 .SH EXIT STATUS
 .B markov
