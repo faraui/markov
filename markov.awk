@@ -11,4 +11,4 @@
 } END {
   print ""
   print WORD
-}'
+}
