@@ -97,17 +97,17 @@ then for SEQ in ${FILES[@]}
                 if [ -s "$ALGORITHM" ]
                 then ALGORITHMS+=("$ALGORITHM")
                 else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is empty" >&2
-                     TO_EXIT="y"
+                     AUS="J"
                 fi
            else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is not present" >&2
-                TO_EXIT="y"
+                AUS="J"
            fi
         done < $SEQ
      done
 else ALGORITHMS=${FILES[@]}
      unset FILES
 fi
-if [ "$TO_EXIT" = "y" ]
+if [ "$AUS" = "J" ]
 then exit 2 
 fi
 
@@ -125,6 +125,10 @@ fi
 while true
 do read -e -p "Input word: " WORD
    ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
+   if [ $(echo "$ALNUM_WORD" | wc -c) -gt 131072 ]
+   then echo -e "${RED}Error.${DEF} Input word lenght exceeds the maximum value of 131 072" >&2
+        exit 2
+   fi
    if [ "$WORD" != "$ALNUM_WORD" ]
    then echo -e -n "${BLUE}Warning.${DEF} "
         WORD_CHARS=($(echo "$WORD" | grep -o .))
