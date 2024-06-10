@@ -125,6 +125,10 @@ fi
 while true
 do read -e -p "Input word: " WORD
    ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
+   if [ $(echo "$ALNUM_WORD" | wc -c) -gt 131072 ]
+   then echo -e "${RED}Error.${DEF} Input word lenght exceeds the maximum value of 131 072" >&2
+        exit 2
+   fi
    if [ "$WORD" != "$ALNUM_WORD" ]
    then echo -e -n "${BLUE}Warning.${DEF} "
         WORD_CHARS=($(echo "$WORD" | grep -o .))
@@ -139,11 +143,8 @@ do read -e -p "Input word: " WORD
         read
         if [[ $REPLY =~ ^[nNmMbBтТьЬиИ] ]]
         then echo "Input word: $ALNUM_WORD"
+             break
         fi
-   fi
-   if [ $(echo "$ALNUM_WORD" | wc -c) -gt 131072 ]
-   then echo -e "${RED}Error.${DEF} Input word lenght exceeds the maximum value of 131 072" >&2
-        exit 2
    else break
    fi
 done
