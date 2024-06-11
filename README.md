@@ -4,4 +4,4 @@
 [![Contributors](https://img.shields.io/badge/Contributors-@faraui-lightblue.svg)](https://github.com/faraui/markov/graphs/contributors)
 [![Algorithms](https://img.shields.io/badge/Algorithms-17-lightyellow.svg)](https://github.com/faraui/markov/tree/main/algorithms)
 
-Markov algorithms interpreter and their largest library.
+Markov algorithms interpreter and their largest library. Written in Shell and Awk. Manual page source written in Roff included.
