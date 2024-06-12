@@ -7,14 +7,14 @@ markov - Markov algorithms interpreter and their largest library
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
 **./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-v**\|**\--verbose**\]
-\[**-c**\|**\--count**\] <u>algorithm-file</u> \...\
+\[**-c**\|**\--count**\] *algorithm-file* \...\
 **./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-v**\|**\--verbose**\]
 \[**-c**\|**\--count**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
 ## DESCRIPTION
 
-**markov.sh**
+**markov**
 
 ## OPTIONS
 
