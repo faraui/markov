@@ -52,6 +52,27 @@ then DEF="\033[0m"
      PURP="\033[35m"
 fi
 
+# MAWK installation if requiered
+if ! command -v mawk &> /dev/null
+then if [ -f /etc/os-release ]
+     then source /etc/os-release
+          case $ID in
+          debian|ubuntu|mint)
+            apt-get update && apt-get install -y mawk
+            ;;
+          fedora)
+            dnf update && dnf install -y mawk
+            ;;
+          *)
+            echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically."
+            exit 1
+            ;;
+          esac
+     else echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically."
+          exit 2
+     fi
+fi
+
 # Unknown argument(s) passed case
 if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]
 then echo -e -n "${RED}Error.${DEF}" >&2
@@ -148,7 +169,7 @@ do read -e -p "Input word: " WORD
 done
 
 # No-verbose interpreter
-awk -v WORD=$WORD '
+mawk -v WORD=$WORD '
 { if ($3 == "^") { $3 = "" }
   if (sub($1, $3, WORD)) {
     if ($2 == ",") {
