@@ -1,8 +1,8 @@
-# NAME
+## NAME
 
 markov - Markov algorithms interpreter and their largest library
 
-# SYNOPSIS
+## SYNOPSIS
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
@@ -12,11 +12,11 @@ markov - Markov algorithms interpreter and their largest library
 \[**-c**\|**\--count**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
-# DESCRIPTION
+## DESCRIPTION
 
 **markov.sh**
 
-# OPTIONS
+## OPTIONS
 
 **-V**, **\--version**
 
@@ -58,7 +58,7 @@ markov - Markov algorithms interpreter and their largest library
 > Process each passed file as an algorithm sequence rather than an
 > algorithm.
 
-# CONFIGURATION
+## CONFIGURATION
 
 The configuration allows each following option to be set or unset if not
 passed as an argument:
@@ -89,26 +89,26 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-# FILES
+## FILES
 
 **markov**
 
-# ERRORS
+## ERRORS
 
 **markov**
 
-# EXIT STATUS
+## EXIT STATUS
 
 **markov**
 
-# EXAMPLES
+## EXAMPLES
 
 **markov**
 
-# AUTHOR
+## AUTHOR
 
 **markov**
 
-# SEE ALSO
+## SEE ALSO
 
 **markov**
