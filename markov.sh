@@ -56,18 +56,13 @@ fi
 if ! command -v mawk &> /dev/null
 then if [ -f /etc/os-release ]
      then source /etc/os-release
-          case $ID in
-          debian|ubuntu|mint)
-            apt-get update && apt-get install -y mawk
-            ;;
-          fedora)
-            dnf update && dnf install -y mawk
-            ;;
-          *)
-            echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically."
-            exit 1
-            ;;
-          esac
+          if [ $ID == "debian" ] || [ $ID_like == "debian" ] || [ $ID_like == "ubuntu" ]
+          then sudo apt-get install -y mawk > /dev/null
+          elif [ $ID == "fedora" ] || [ $ID_like == "fedora" ]
+          then sudo dnf install -y mawk > /dev/null
+          elif [ $ID == "arch" ] || [ $ID_like == "arch" ]
+          then sudo pacman -S mawk > /dev/null
+          fi
      else echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically."
           exit 2
      fi
