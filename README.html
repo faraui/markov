@@ -1,0 +1,106 @@
+ <h1>NAME</h1>
+<p>markov - Markov algorithms interpreter and their largest library</p>
+<h1>SYNOPSIS</h1>
+<p><strong>./markov.sh</strong>
+[<strong>-V</strong>|<strong>--version</strong>]
+[<strong>-u</strong>|<strong>--usage</strong>]
+[<strong>-?</strong>|<strong>-h</strong>|<strong>--help</strong>]
+[<strong>-rc</strong>|<strong>--reset-config</strong>]<br />
+<strong>./markov.sh</strong>
+[<strong>-nc</strong>|<strong>--no-colors</strong>]
+[<strong>-v</strong>|<strong>--verbose</strong>]
+[<strong>-c</strong>|<strong>--count</strong>] <em>algorithm-file</em>
+...<br />
+<strong>./markov.sh</strong>
+[<strong>-nc</strong>|<strong>--no-colors</strong>]
+[<strong>-v</strong>|<strong>--verbose</strong>]
+[<strong>-c</strong>|<strong>--count</strong>]
+<strong>-s</strong>|<strong>--sequence</strong>
+<em>algorithm-sequence-file</em> ...</p>
+<h1>DESCRIPTION</h1>
+<p><strong>markov.sh</strong></p>
+<h1>OPTIONS</h1>
+<p><strong>-V</strong>, <strong>--version</strong></p>
+<blockquote>
+<p>Display the version message and exit immediately.</p>
+</blockquote>
+<p><strong>-u</strong>, <strong>--usage</strong></p>
+<blockquote>
+<p>Display a usage message and exit immediately.</p>
+</blockquote>
+<p><strong>-?</strong>, <strong>-h</strong>, <strong>--help</strong></p>
+<blockquote>
+<p>Display a help message and exit immediately.</p>
+</blockquote>
+<p><strong>-nc</strong>, <strong>--no-colors</strong></p>
+<blockquote>
+<p>Disable color escape sequences and proceed.<br />
+They are disabled whether or not this option is set, if any of these are
+true:</p>
+<blockquote>
+<p>a) <strong>markov</strong> output is not directed into the
+terminal<br />
+b) user <strong>echo</strong> can not process escape-sequences</p>
+</blockquote>
+</blockquote>
+<p><strong>-v</strong>, <strong>--verbose</strong></p>
+<blockquote>
+<p>Display local changes in the processed word after each substituion
+rule is applied.<br />
+Consider this option to be unset if a lot of substitution rules are
+expected to be applied.<br />
+To know whether to use this option, launch <strong>markov</strong> with
+<strong>-c</strong>|<strong>--count</strong> option in advance.</p>
+</blockquote>
+<p><strong>-c</strong>, <strong>--count</strong></p>
+<blockquote>
+<p>Display the number of applied substituion rules once the execution is
+complete.</p>
+</blockquote>
+<p><strong>-s</strong>, <strong>--sequence</strong></p>
+<blockquote>
+<p>Process each passed file as an algorithm sequence rather than an
+algorithm.</p>
+</blockquote>
+<h1>CONFIGURATION</h1>
+<p>The configuration allows each following option to be set or unset if
+not passed as an argument:</p>
+<blockquote>
+<p><strong>--no-colors</strong><br />
+<strong>--verbose</strong><br />
+<strong>--sequence</strong></p>
+</blockquote>
+<p>Configuration is done by editing the configuration file.<br />
+In line 4 of <strong>markov.sh</strong> the absolute path of the
+configuration file is set.<br />
+In the unmodified <strong>markov.sh</strong>, this absolute path is
+<strong>~/.config/markov/markov.conf</strong>.</p>
+<p>The configuration file is set automatically once
+<strong>markov.sh</strong> is launched, if any of these are true:</p>
+<blockquote>
+<p>a) option <strong>-rc</strong>|<strong>--reset-config</strong> is
+passed<br />
+b) the configuration file is empty<br />
+c) the configuration file is not present<br />
+</p>
+</blockquote>
+<p>In lines 9-11 of <strong>markov.sh</strong>, the data of the
+configuration file that is thus set can be modified.<br />
+In the unmodified <strong>markov.sh</strong>, this data is
+<strong>NO_COLORS=0; VERBOSE=0; SEQUENCE=0</strong>.<br />
+With such configuration file data, each corresponding option is unset if
+not passed as an argument.<br />
+<strong>1</strong> written respectively in the configuration file will
+give the opposite result for an option.</p>
+<h1>FILES</h1>
+<p><strong>markov</strong></p>
+<h1>ERRORS</h1>
+<p><strong>markov</strong></p>
+<h1>EXIT STATUS</h1>
+<p><strong>markov</strong></p>
+<h1>EXAMPLES</h1>
+<p><strong>markov</strong></p>
+<h1>AUTHOR</h1>
+<p><strong>markov</strong></p>
+<h1>SEE ALSO</h1>
+<p><strong>markov</strong></p>
