@@ -28,8 +28,8 @@ do case "$ARGUMENT" in
      echo "Reset of the config file $CONFIG is done"
      exit ;;
    '-nc'|'--no-colors') NO_COLORS=1 ;;
-   '-v'|'--verbose') VERBOSE="_verbose" ;;
-   '-c'|'--count') COUNT="_count" ;;
+   '-c'|'--count') COUNT=1 ;;
+   '-v'|'--verbose') VERBOSE=1 ;;
    '-s'|'--sequence') SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
@@ -117,17 +117,17 @@ then for SEQ in ${FILES[@]}
                 if [ -s "$ALGORITHM" ]
                 then ALGORITHMS+=("$ALGORITHM")
                 else echo -e "${R}Error.${RS} Line $LINENR of $SEQ: $ALGORITHM is empty" >&2
-                     AUS="J"
+                     BOOL=1
                 fi
            else echo -e "${R}Error.${RS} Line $LINENR of $SEQ: $ALGORITHM is not present" >&2
-                AUS="J"
+                BOOL=1
            fi
         done < $SEQ
      done
 else ALGORITHMS=${FILES[@]}
      unset FILES
 fi
-if [ "$AUS" = "J" ]
+if [ $BOOL -eq 1 ]
 then exit 2 
 fi
 
