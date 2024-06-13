@@ -57,21 +57,15 @@ if ! command -v mawk &> /dev/null
 then if [ -f /etc/os-release ]
      then source /etc/os-release
           if [[ "$ID" == "debian" ]] || [[ "$ID_like" == "debian" ]] || [[ "$ID_like" == "ubuntu" ]]
-          then sudo apt-get install -y mawk > /dev/null
-               echo "Installing MAWK..."
+          then sudo apt-get install -y mawk > /dev/null && echo "MAWK installation is complete"
           elif [[ "$ID" == "fedora" ]] || [[ "$ID_like" == "fedora" ]]
-          then sudo dnf install -y mawk > /dev/null
-               echo "Installing MAWK..."
+          then sudo dnf install -y mawk > /dev/null && echo "MAWK installation is complete"
           elif [[ "$ID" == "arch" ]] || [[ "$ID_like" == "arch" ]]
-          then sudo pacman -S mawk > /dev/null
-               echo "Installing MAWK..."
+          then sudo pacman -S mawk > /dev/null && echo "MAWK installation is complete"
           fi
+     else echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically." >&2
+          exit 2
      fi
-fi
-if ! command -v mawk &> /dev/null
-then echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically."
-     exit 2
-else echo "MAWK installation is complete"
 fi
 
 # Unknown argument(s) passed case
@@ -169,19 +163,22 @@ do read -e -p "Input word: " WORD
    fi
 done
 
-# No-verbose interpreter
+# No-verbose, one algorithm at a time optimized interpreter
 mawk -v WORD=$WORD '
-{ if ($3 == "^") { $3 = "" }
-  if (sub($1, $3, WORD)) {
-    if ($2 == ",") {
-      for (i = ARGC; i > ARGIND; i--)
-        ARGV[i] = ARGV[i - 1]
-      ARGC++
-      ARGV[ARGIND + 1] = FILENAME
+{
+  L[NR] = $1
+  M[NR] = $2
+  if ($3 == "^") { $3 = "" }
+  R[NR] = $3
+} 
+END
+{
+  i = 0
+  while (i <= NR) {
+    i++
+    if (sub(L[i], R[i], WORD)) {
+      if (M[i] == ".") { break }
+      i = 0
     }
-    nextfile
-  }
-} END {
-  print ""
-  print WORD
+  } print WORD
 }' ${ALGORITHMS[@]}
