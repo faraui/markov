@@ -14,16 +14,19 @@ source $CONFIG
 # Processing passed arguments
 for ARGUMENT in "$@"
 do case "$ARGUMENT" in
-   -h|--help)
-     echo "Help: Any ACM A. M. Turing Award..."
-     exit 0 ;;
+   -V|--version)
+     echo "markov v1.0.0"
+     exit ;;
    -u|--usage)
      echo "Usage: $0 [GNU or POSIX style options] file ..."
-     exit 0 ;;
+     exit ;;
+   -?|-h|--help)
+     echo "Help: Any ACM A. M. Turing Award..."
+     exit ;;
    -rc|--reset-config)
      echo -n > $CONFIG
-     echo "Reset of the config file $CONFIG has been performed"
-     exit 0 ;;
+     echo "Reset of the config file $CONFIG is done"
+     exit ;;
    -nc|--no-colors) NO_COLORS=1 ;;
    -v|--verbose) VERBOSE=1 ;;
    -s|--sequence) SEQUENCE=1 ;;
@@ -41,12 +44,14 @@ do case "$ARGUMENT" in
    esac
 done
 
-# Declaring variables of color escape-sequences if they are processable and requested
+# Declaring variables of escape-sequences if they are processable and requested
 if [ -t 1 ] && [ "\033[0m" != $(echo -e "\033[0m") ] && [ $NO_COLORS -eq 0 ]
-then DEF="\033[0m"
-     RED="\033[31m"
-     BLUE="\033[34m"
-     PURP="\033[35m"
+then RS="\033[0m" # Reset all styles and colors
+     BLD="\033[1m" # Set bold style
+     UND="\033[4m" # Set underline style
+     R="\033[31m" # Set red color
+     B="\033[34m" # Set blue color
+     P="\033[35m" # Set purple color
 fi
 
 # MAWK installation if requiered
@@ -60,40 +65,43 @@ then if [ -f /etc/os-release ]
           elif [[ "$ID" == "arch" ]] || [[ "$ID_like" == "arch" ]]
           then sudo pacman -S mawk > /dev/null && echo "MAWK installation is complete"
           fi
-     else echo "${RED}Error.${DEF} Install MAWK manually as it cannot be installed automatically." >&2
+     else echo "${R}Error.${RS} Install MAWK manually as it cannot be installed automatically." >&2
           exit 2
      fi
 fi
 
+# Declaring usage message function
+usage() {
+  echo -e "${P}Usage:${RS} ${BLD}$0${RS} [${BLD}POSIX or GNU style options${RS}] ${UND}file${RS} ..." >&2
+  exit 2
+}
+
 # Unknown argument(s) passed case
 if [ ${#UNKNOWN_ARGUMENTS[@]} -ne 0 ]
-then echo -e -n "${RED}Error.${DEF}" >&2
+then echo -e -n "${R}Error.${RS}" >&2
      if [ ${#UNKNOWN_ARGUMENTS[@]} -eq 1 ]
      then echo -n " The" >&2
      else echo -n " Each" >&2
      fi
      echo " following argument is neither option nor file: ${UNKNOWN_ARGUMENTS[@]}" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] file ..." >&2
-     exit 2
+     usage
 fi
 
 # Empty files passed case
 if [ ${#EMPTY_FILES[@]} -ne 0 ]
-then echo -e -n "${RED}Error.${DEF}" >&2
+then echo -e -n "${R}Error.${RS}" >&2
      if [ ${#EMPTY_FILES[@]} -eq 1 ]
      then echo -n " The" >&2
      else echo -n " Each" >&2
      fi
      echo " following file is empty: ${EMPTY_FILES[@]}" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] file ..." >&2
-     exit 2
+     usage
 fi
 
 # No file passed case
 if [ ${#FILES[@]} -eq 0 ]
-then echo -e "${RED}Error.${DEF} No file passed" >&2
-     echo -e "${PURP}Usage:${DEF} $0 [POSIX or GNU style options] file ..." >&2
-     exit 2
+then echo -e "${R}Error.${RS} No file passed" >&2
+     usage
 fi
 
 # Processing sequences if they are requested
@@ -107,10 +115,10 @@ then for SEQ in ${FILES[@]}
                 sed -i '/^[[:space:]]*$/d' $ALGORITHM
                 if [ -s "$ALGORITHM" ]
                 then ALGORITHMS+=("$ALGORITHM")
-                else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is empty" >&2
+                else echo -e "${R}Error.${RS} Line $LINENR of $SEQ: $ALGORITHM is empty" >&2
                      AUS="J"
                 fi
-           else echo -e "${RED}Error.${DEF} Line $LINENR of $SEQ: $ALGORITHM is not present" >&2
+           else echo -e "${R}Error.${RS} Line $LINENR of $SEQ: $ALGORITHM is not present" >&2
                 AUS="J"
            fi
         done < $SEQ
@@ -124,7 +132,8 @@ fi
 
 # Incorrect second word case
 if [ "$(awk -v DEF=$DEF -v RED=$RED '
-  { if ($2 != "," && $2 != ".") {
+  {
+    if ($2 != "," && $2 != ".") {
       print RED "Error." DEF " Algorithm file " FILENAME ", line " FNR \
       ": the second word must be comma or period; found " RED $2 DEF ""
     }
@@ -137,15 +146,15 @@ while true
 do read -e -p "Input word: " WORD
    ALNUM_WORD=$(echo "$WORD" | tr -cd [:alnum:])
    if [ $(echo "$ALNUM_WORD" | wc -c) -gt 131072 ]
-   then echo -e "${RED}Error.${DEF} Input word lenght exceeds the maximum value of 131 072" >&2
+   then echo -e "${R}Error.${RS} Input word lenght exceeds the maximum value of 131 072" >&2
         exit 2
    fi
    if [ "$WORD" != "$ALNUM_WORD" ]
-   then echo -e -n "${BLUE}Warning.${DEF} "
+   then echo -e -n "${B}Warning.${RS} "
         WORD_CHARS=($(echo "$WORD" | grep -o .))
         for CHAR in "${WORD_CHARS[@]}"
         do if [ "$(echo "$CHAR")" != "$(echo "$CHAR" | tr -cd [:alnum:])" ]
-           then echo -e -n "${RED}$CHAR${DEF}"
+           then echo -e -n "${R}$CHAR${RS}"
            else echo -n "$CHAR"
            fi
         done
