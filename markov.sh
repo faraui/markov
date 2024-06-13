@@ -16,17 +16,14 @@ for ARGUMENT in "$@"
 do case "$ARGUMENT" in
    -h|--help)
      echo "Help: Any ACM A. M. Turing Award..."
-     exit 0
-     ;;
+     exit 0 ;;
    -u|--usage)
-     echo "Usage: $0 [POSIX or GNU style options] file ..."
-     exit 0
-     ;;
+     echo "Usage: $0 [GNU or POSIX style options] file ..."
+     exit 0 ;;
    -rc|--reset-config)
      echo -n > $CONFIG
      echo "Reset of the config file $CONFIG has been performed"
-     exit 0
-     ;;
+     exit 0 ;;
    -nc|--no-colors) NO_COLORS=1 ;;
    -v|--verbose) VERBOSE=1 ;;
    -s|--sequence) SEQUENCE=1 ;;
