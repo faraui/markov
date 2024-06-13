@@ -14,23 +14,23 @@ source $CONFIG
 # Processing passed arguments
 for ARGUMENT in "$@"
 do case "$ARGUMENT" in
-   -V|--version)
+   '-V'|'--version')
      echo "markov v1.0.0"
      exit ;;
-   -u|--usage)
+   '-u'|'--usage')
      echo "Usage: $0 [GNU or POSIX style options] file ..."
      exit ;;
-   -?|-h|--help)
+   '-?'|'-h'|'--help')
      echo "Help: Any ACM A. M. Turing Award..."
      exit ;;
-   -rc|--reset-config)
+   '-rc'|'--reset-config')
      echo -n > $CONFIG
      echo "Reset of the config file $CONFIG is done"
      exit ;;
-   -nc|--no-colors) NO_COLORS=1 ;;
-   -v|--verbose) VERBOSE="_verbose" ;;
-   -c|--count) COUNT="_count" ;;
-   -s|--sequence) SEQUENCE=1 ;;
+   '-nc'|'--no-colors') NO_COLORS=1 ;;
+   '-v'|'--verbose') VERBOSE="_verbose" ;;
+   '-c'|'--count') COUNT="_count" ;;
+   '-s'|'--sequence') SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
      then echo >> $ARGUMENT
@@ -170,22 +170,8 @@ do read -e -p "Input word: " WORD
    fi
 done
 
-# No-verbose, one algorithm at a time optimised interpreter
-mawk -v WORD=$WORD '
-{
-  L[NR] = $1
-  M[NR] = $2
-  if ($3 == "^") { $3 = "" }
-  R[NR] = $3
-} 
-END
-{
-  i = 0
-  while (i <= NR) {
-    i++
-    if (sub(L[i], R[i], WORD)) {
-      if (M[i] == ".") { break }
-      i = 0
-    }
-  } print WORD
-}' ${ALGORITHMS[@]}
+# Interpreting input word with approriate options
+for ALG in "${ALGORITHMS[@]}"
+do WORD="$(mawk -v WORD=$WORD -f interp.awk $ALG)"
+done
+echo $WORD
