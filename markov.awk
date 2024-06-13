@@ -1,14 +1,17 @@
-{ if ($3 == "^") { $3 = "" }
-  if (sub($1, $3, WORD)) {
-    if ($2 == ",") {
-      for (i = ARGC; i > ARGIND; i--)
-        ARGV[i] = ARGV[i - 1]
-      ARGC++
-      ARGV[ARGIND + 1] = FILENAME
+{
+  L[NR] = $1
+  M[NR] = $2
+  if ($3 == "^") { $3 = "" }
+  R[NR] = $3
+} 
+END
+{
+  i = 0
+  while (i <= NR) {
+    i++
+    if (sub(L[i], R[i], WORD)) {
+      if (M[i] == ".") { break }
+      i = 0
     }
-    nextfile
-  }
-} END {
-  print ""
-  print WORD
+  } print WORD
 }
