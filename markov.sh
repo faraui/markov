@@ -29,6 +29,7 @@ do case "$ARGUMENT" in
      exit ;;
    -nc|--no-colors) NO_COLORS=1 ;;
    -v|--verbose) VERBOSE=1 ;;
+   -c|--count) COUNT=1 ;;
    -s|--sequence) SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
