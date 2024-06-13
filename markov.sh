@@ -172,6 +172,6 @@ done
 
 # Interpreting input word with approriate options
 for ALG in "${ALGORITHMS[@]}"
-do WORD="$(mawk -v WORD=$WORD -f interp.awk $ALG)"
+do WORD="$(./interp.awk WORD=$WORD $ALG)"
 done
 echo $WORD
