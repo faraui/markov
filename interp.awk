@@ -1,3 +1,5 @@
+#!/bin/mawk -f
+
 { 
   L[FNR] = $1
   M[FNR] = $2
@@ -7,8 +9,10 @@
   i = 1
   while (i <= FNR) {
     if (sub(L[i], R[i], WORD)) {
+      C++
       if (M[i] == ".") { break }
       i = 1
     } else { i++ }
   } print WORD
 }
+-v
