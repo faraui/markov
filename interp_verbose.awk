@@ -1,17 +1,18 @@
-{
-  L[NR] = $1
-  M[NR] = $2
+#!/bin/mawk -f
+
+{ 
+  L[FNR] = $1
+  M[FNR] = $2
   if ($3 == "^") { $3 = "" }
-  R[NR] = $3
-} 
-END
-{
-  i = 0
-  while (i <= NR) {
-    i++
+  R[FNR] = $3
+} END {
+  i = 1
+  while (i <= FNR) {
     if (sub(L[i], R[i], WORD)) {
+      C++
       if (M[i] == ".") { break }
-      i = 0
-    }
+      i = 1
+    } else { i++ }
   } print WORD
 }
+-v
