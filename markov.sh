@@ -163,7 +163,7 @@ do read -e -p "Input word: " WORD
    fi
 done
 
-# No-verbose, one algorithm at a time optimized interpreter
+# No-verbose, one algorithm at a time optimised interpreter
 mawk -v WORD=$WORD '
 {
   L[NR] = $1
