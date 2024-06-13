@@ -28,8 +28,8 @@ do case "$ARGUMENT" in
      echo "Reset of the config file $CONFIG is done"
      exit ;;
    -nc|--no-colors) NO_COLORS=1 ;;
-   -v|--verbose) VERBOSE=1 ;;
-   -c|--count) COUNT=1 ;;
+   -v|--verbose) VERBOSE="_verbose" ;;
+   -c|--count) COUNT="_count" ;;
    -s|--sequence) SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
