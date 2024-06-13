@@ -1,22 +1,22 @@
-## NAME
+# NAME
 
 markov - Markov algorithms interpreter and their largest library
 
-## SYNOPSIS
+# SYNOPSIS
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
-**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-v**\|**\--verbose**\]
-\[**-c**\|**\--count**\] *algorithm-file* \...\
-**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-v**\|**\--verbose**\]
-\[**-c**\|**\--count**\] **-s**\|**\--sequence**
+**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-c**\|**\--count**\]
+\[**-v**\|**\--verbose**\] *algorithm-file* \...\
+**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-c**\|**\--count**\]
+\[**-v**\|**\--verbose**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
-## DESCRIPTION
+# DESCRIPTION
 
-**markov**
+**markov.sh**
 
-## OPTIONS
+# OPTIONS
 
 **-V**, **\--version**
 
@@ -41,8 +41,8 @@ markov - Markov algorithms interpreter and their largest library
 
 **-c**, **\--count**
 
-> Display the number of applied substituion rules once the execution is
-> complete.
+> Display the total number of applied substituion rules once their
+> execution is complete.
 
 **-v**, **\--verbose**
 
@@ -58,7 +58,7 @@ markov - Markov algorithms interpreter and their largest library
 > Process each passed file as an algorithm sequence rather than an
 > algorithm.
 
-## CONFIGURATION
+# CONFIGURATION
 
 The configuration allows each following option to be set or unset if not
 passed as an argument:
@@ -89,26 +89,26 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-## FILES
+# FILES
 
 **markov**
 
-## ERRORS
+# ERRORS
 
 **markov**
 
-## EXIT STATUS
+# EXIT STATUS
 
 **markov**
 
-## EXAMPLES
+# EXAMPLES
 
 **markov**
 
-## AUTHOR
+# AUTHOR
 
 **markov**
 
-## SEE ALSO
+# SEE ALSO
 
 **markov**
