@@ -6,7 +6,6 @@
 } END {
   i = 1
   while (i <= FNR) {
-    i++
     if (sub(L[i], R[i], WORD)) {
       if (M[i] == ".") { break }
       i = 1
