@@ -1,8 +1,8 @@
-# NAME
+## NAME
 
 markov - Markov algorithms interpreter and their largest library
 
-# SYNOPSIS
+## SYNOPSIS
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
@@ -12,15 +12,15 @@ markov - Markov algorithms interpreter and their largest library
 \[**-v**\|**\--verbose**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
-# DESCRIPTION
+## DESCRIPTION
 
 **markov.sh**
 
-# OPTIONS
+## OPTIONS
 
 **-V**, **\--version**
 
-> Display the version message and exit immediately.
+> Display a version message and exit immediately.
 
 **-u**, **\--usage**
 
@@ -32,7 +32,7 @@ markov - Markov algorithms interpreter and their largest library
 
 **-nc**, **\--no-colors**
 
-> Disable color escape sequences and proceed.\
+> Disable font colors and styles.\
 > They are disabled whether or not this option is set, if any of these
 > are true:
 >
@@ -58,7 +58,7 @@ markov - Markov algorithms interpreter and their largest library
 > Process each passed file as an algorithm sequence rather than an
 > algorithm.
 
-# CONFIGURATION
+## CONFIGURATION
 
 The configuration allows each following option to be set or unset if not
 passed as an argument:
@@ -89,26 +89,26 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-# FILES
+## FILES
 
 **markov**
 
-# ERRORS
+## ERRORS
 
 **markov**
 
-# EXIT STATUS
+## EXIT STATUS
 
 **markov**
 
-# EXAMPLES
+## EXAMPLES
 
 **markov**
 
-# AUTHOR
+## AUTHOR
 
 **markov**
 
-# SEE ALSO
+## SEE ALSO
 
 **markov**
