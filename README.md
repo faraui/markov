@@ -39,6 +39,11 @@ markov - Markov algorithms interpreter and their largest library
 > > a\) **markov** output is not directed into the terminal\
 > > b) user **echo** can not process escape-sequences
 
+**-c**, **\--count**
+
+> Display the number of applied substituion rules once the execution is
+> complete.
+
 **-v**, **\--verbose**
 
 > Display local changes in the processed word after each substituion
@@ -47,11 +52,6 @@ markov - Markov algorithms interpreter and their largest library
 > expected to be applied.\
 > To know whether to use this option, launch **markov** with
 > **-c**\|**\--count** option in advance.
-
-**-c**, **\--count**
-
-> Display the number of applied substituion rules once the execution is
-> complete.
 
 **-s**, **\--sequence**
 
