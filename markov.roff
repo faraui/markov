@@ -1,4 +1,4 @@
-.TH MARKOV 1 2024-06-10
+.TH MARKOV 1 2024-06-13
 
 .SH NAME
 markov \- Markov algorithms interpreter and their largest library
@@ -12,14 +12,14 @@ markov \- Markov algorithms interpreter and their largest library
 .br
 .B ./markov.sh
 [\fB\-nc\fP|\fB\--no-colors\fP]
-[\fB\-v\fP|\fB\--verbose\fP]
 [\fB\-c\fP|\fB\--count\fP]
+[\fB\-v\fP|\fB\--verbose\fP]
 \fIalgorithm\-file\fP ...
 .br
 .B ./markov.sh
 [\fB\-nc\fP|\fB\--no-colors\fP]
-[\fB\-v\fP|\fB\--verbose\fP]
 [\fB\-c\fP|\fB\--count\fP]
+[\fB\-v\fP|\fB\--verbose\fP]
 \fB\-s\fP|\fB\--sequence\fP
 \fIalgorithm-sequence\-file\fP ...
 
@@ -55,6 +55,11 @@ b) user \fBecho\fP can not process escape-sequences
 
 .RE
 .RE
+\fB\-c\fP, \fB\--count\fP
+.RS
+Display the total number of applied substituion rules once their execution is complete.
+
+.RE
 \fB\-v\fP, \fB\--verbose\fP
 .RS
 Display local changes in the processed word after each substituion rule is applied.
@@ -62,11 +67,6 @@ Display local changes in the processed word after each substituion rule is appli
 Consider this option to be unset if a lot of substitution rules are expected to be applied.
 .br
 To know whether to use this option, launch \fBmarkov\fP with \fB\-c\fP|\fB\--count\fP option in advance.
-
-.RE
-\fB\-c\fP, \fB\--count\fP
-.RS
-Display the number of applied substituion rules once the execution is complete.
 
 .RE
 \fB\-s\fP, \fB\--sequence\fP
