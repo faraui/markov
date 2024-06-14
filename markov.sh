@@ -59,16 +59,21 @@ fi
 if ! command -v mawk &> /dev/null
 then if [ -f /etc/os-release ]
      then source /etc/os-release
-          if [[ "$ID" == "debian" ]] || [[ "$ID_like" == "debian" ]] || [[ "$ID_like" == "ubuntu" ]]
-          then sudo apt-get install -y mawk > /dev/null && echo "MAWK installation is complete"
-          elif [[ "$ID" == "fedora" ]] || [[ "$ID_like" == "fedora" ]]
-          then sudo dnf install -y mawk > /dev/null && echo "MAWK installation is complete"
-          elif [[ "$ID" == "arch" ]] || [[ "$ID_like" == "arch" ]]
-          then sudo pacman -S mawk > /dev/null && echo "MAWK installation is complete"
+          if ! [ -z "$ID_like" ]
+          then ID=$ID_like
           fi
-     else echo "${R}Error.${RS} Install MAWK manually as it cannot be installed automatically." >&2
-          exit 2
+          sudo echo "Installing MAWK ..." >&3
+          case "$ID" in
+          'debian'|'ubuntu') sudo apt-get install -y mawk > /dev/null ;;
+          'fedora') sudo dnf install -y mawk > /dev/null ;;
+          'arch') sudo pacman -S mawk > /dev/null ;;
+          esac
      fi
+fi
+if command -v mawk &> /dev/null
+then echo "MAWK installation is complete" >&3
+else echo "${R}Error.${RS} Install MAWK manually as it cannot be installed automatically." >&2
+     exit 2
 fi
 
 # Declaring usage message function
