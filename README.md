@@ -2,6 +2,10 @@
 
 markov - Markov algorithms interpreter and their largest library
 
+# DESCRIPTION
+
+**markov.sh**
+
 # INSTALLATION
 markov
 
@@ -56,10 +60,6 @@ markov
 **./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-c**\|**\--count**\]
 \[**-v**\|**\--verbose**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
-
-# DESCRIPTION
-
-**markov.sh**
 
 # OPTIONS
 
