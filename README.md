@@ -7,18 +7,18 @@ markov
 
 ## TREE
 ```rust
-[  23k]  markov
+[  22K]  markov
 ├── [  753]  LICENSE.txt
-├── [ 2.7k]  README.md
+├── [ 2.7K]  README.md
 ├── [  244]  interp.awk
 ├── [  254]  interp_count.awk
 ├── [  254]  interp_count_verbose.awk
 ├── [  254]  interp_verbose.awk
-├── [ 5.3k]  markov.sh
-├── [  11k]  algorithms
+├── [ 5.2K]  markov.sh
+├── [  10K]  algorithms
 │   ├── [   22]  binary_to_preunary
-│   ├── [ 6.7k]  decimal_to_dekimal
-│   ├── [ 1.7k]  dekimal_to_decimal
+│   ├── [ 6.6K]  decimal_to_dekimal
+│   ├── [ 1.7K]  dekimal_to_decimal
 │   ├── [  135]  dekimal_to_unary
 │   ├── [  118]  division
 │   ├── [   77]  factorial
@@ -33,7 +33,7 @@ markov
 │   ├── [    6]  summation
 │   ├── [   42]  unary_compare
 │   └── [  503]  unary_to_dekimal
-└── [ 1.8k]  sequences
+└── [ 1.7K]  sequences
     ├── [  124]  binary_to_decimal
     ├── [  101]  compare
     ├── [  190]  division
