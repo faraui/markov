@@ -19,7 +19,7 @@ markov
 .. [  254] interp_count_verbose.awk
 .. [  254] interp_verbose.awk
 ++ [ 5.2K] markov.sh
-.. [  10K] algorithms
+-- [  10K] algorithms
 .. .. [   22] binary_to_preunary
 .. .. [ 6.6K] decimal_to_dekimal
 .. .. [ 1.7K] dekimal_to_decimal
@@ -37,7 +37,7 @@ markov
 .. .. [    6] summation
 .. .. [   42] unary_compare
 .. .. [  503] unary_to_dekimal
-.. [ 1.7K] sequences
+-- [ 1.7K] sequences
 .. .. [  124] binary_to_decimal
 .. .. [  101] compare
 .. .. [  190] division
