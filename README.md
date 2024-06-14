@@ -2,6 +2,51 @@
 
 markov - Markov algorithms interpreter and their largest library
 
+## INSTALLATION
+markov
+
+## TREE
+```rust
+[  23k]  markov
+├── [  753]  LICENSE.txt
+├── [ 2.7k]  README.md
+├── [  244]  interp.awk
+├── [  254]  interp_count.awk
+├── [  254]  interp_count_verbose.awk
+├── [  254]  interp_verbose.awk
+├── [ 5.3k]  markov.sh
+├── [  11k]  algorithms
+│   ├── [   22]  binary_to_preunary
+│   ├── [ 6.7k]  decimal_to_dekimal
+│   ├── [ 1.7k]  dekimal_to_decimal
+│   ├── [  135]  dekimal_to_unary
+│   ├── [  118]  division
+│   ├── [   77]  factorial
+│   ├── [   49]  greatest_common_divisor
+│   ├── [  366]  lenght
+│   ├── [   87]  multiplication
+│   ├── [   46]  neumann
+│   ├── [   98]  power
+│   ├── [    6]  prefix
+│   ├── [   29]  substraction
+│   ├── [  300]  suffix
+│   ├── [    6]  summation
+│   ├── [   42]  unary_compare
+│   └── [  503]  unary_to_dekimal
+└── [ 1.8k]  sequences
+    ├── [  124]  binary_to_decimal
+    ├── [  101]  compare
+    ├── [  190]  division
+    ├── [  235]  factorial
+    ├── [  167]  greatest_common_divisor
+    ├── [  196]  multiplication
+    ├── [  213]  power
+    ├── [  176]  substraction
+    └── [  173]  summation
+
+33 files, 3 directories
+```
+
 ## SYNOPSIS
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
