@@ -9,7 +9,7 @@ markov - Markov algorithms interpreter and their largest library
 # INSTALLATION
 markov
 
-# TREE
+# STRUCTURE
 ```diff
 [  22K] markov
 !! [  753] LICENSE.txt
