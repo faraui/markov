@@ -1,5 +1,3 @@
-#!/bin/mawk -f
-
 { 
   L[FNR] = $1
   M[FNR] = $2
@@ -14,4 +12,3 @@
     } else { i++ }
   } print WORD
 }
--v
