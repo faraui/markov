@@ -5,7 +5,7 @@ markov - Markov algorithms interpreter and their largest library
 ## DESCRIPTION
 Markov algorithms is a turing-complete string rewriting system. Hereafter, the description relates specifically to the Markov algorithms alteration implemented in this software.
 
-A *word* is defined as a finite sequence of alphanumericals (i. e. A-Z, a-z and 0-9). An *empty word* is defined as a word with no alphanumericals. It is denoted by `^` and its lenght is 0.
+A *word* is defined as a finite sequence of alphanumericals (i. e. A-Z, a-z and 0-9). An *empty word* is defined as a word with no alphanumericals. An empty word is denoted by `^`.
 
 A word **S** is said to be a *subword* of a word **W**, if **W = XSY**. For any word **W**, **W = ^W**.
 
