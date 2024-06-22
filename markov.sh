@@ -154,7 +154,7 @@ then for SEQ in ${FILES[@]}
 else ALGORITHMS=${FILES[@]}
      unset FILES
 fi
-if [ $BOOL -eq 1 ]
+if [[ $BOOL -eq 1 ]]
 then exit 2 
 fi
 
