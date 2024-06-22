@@ -3,6 +3,8 @@
 markov - Markov algorithms interpreter and their largest library
 
 # DESCRIPTION
+...
+
 ```forth
             ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌ Out1
             ╎ 1             ╎ 1                    ╎ 1
@@ -23,7 +25,11 @@ markov - Markov algorithms interpreter and their largest library
 ```
 
 # INSTALLATION
-markov
+```bash
+git clone https://github.com/faraui/markov.git
+cd markov
+chmod ugo+x markov.sh
+```
 
 # STRUCTURE
 ```diff
@@ -149,18 +155,6 @@ With such configuration file data, each corresponding option is unset if
 not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
-
-# FILES
-
-**markov**
-
-# ERRORS
-
-**markov**
-
-# EXIT STATUS
-
-**markov**
 
 # EXAMPLES
 
