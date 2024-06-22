@@ -14,8 +14,8 @@ A *substitution rule* is defined as two words separated with either space-dot-sp
 A *Markov algorithm* is a finite list of rules, one per line. Its execution on word **W** is described as follows:
 1. If each rule is unworkable on word **W**, the word **W** is the result of the current Markov algorithm execution.
 2. If at least one rule is not unworkable on word **W**, execute the very first of them on word **W**.
-3. If an executed rule was terminal, its result word **A** is the result of the current Markov algorithm execution.
-4. If an executed rule was non-terminal, process its result word **A** as a word **W**.
+3. If an executed rule was terminal, its result is also the result of the current Markov algorithm execution.
+4. If an executed rule was non-terminal, process its result as a word **W**.
 
 ```forth
             ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌ Out1
