@@ -1,8 +1,8 @@
-# NAME
+## NAME
 
 markov - Markov algorithms interpreter and their largest library
 
-# DESCRIPTION
+## DESCRIPTION
 ...
 
 ```forth
@@ -13,18 +13,9 @@ markov - Markov algorithms interpreter and their largest library
  │    ┗╍╍╍╍╍┯╍╍╍╍╍┛   ┗╍╍╍╍╍┯╍╍╍╍╍┛          ┗╍╍╍╍╍┯╍╍╍╍╍┛
  │          ╎ 3             ╎ 3                    ╎ 3
  └╌╌╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
-
-            ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌ Out
-            ╎ 1             ╎ 1                    ╎ 1             ╎ 1
-   In ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2      2 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2 ┏╍╍╍╍╍┷╍╍╍╍╍┓
-╌┬╌╌╌╌╏  L1 x R1  ┠╌╌╌┨  L2 x R2  ┠╌╌╌ ╸╸╸╌╌╌┨  Ln x Rn  ┠╌╌╌┨   ^ . ^   ┃
- ╎    ┗╍╍╍╍╍┯╍╍╍╍╍┛   ┗╍╍╍╍╍┯╍╍╍╍╍┛          ┗╍╍╍╍╍┯╍╍╍╍╍┛   ┗╍╍╍╍╍╍╍╍╍╍╍┛
- ╎          ╎ 3             ╎ 3                    ╎ 3
- └╌╌╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┴╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
-
 ```
 
-# STRUCTURE
+## STRUCTURE
 ```diff
 [  22K] markov
 !! [  753] LICENSE.txt
@@ -66,14 +57,14 @@ markov - Markov algorithms interpreter and their largest library
 33 files, 3 directories
 ```
 
-# INSTALLATION
+## INSTALLATION
 ```bash
 git clone https://github.com/faraui/markov.git
 cd markov
 chmod ugo+x markov.sh
 ```
 
-# SYNOPSIS
+## SYNOPSIS
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
@@ -83,7 +74,7 @@ chmod ugo+x markov.sh
 \[**-v**\|**\--verbose**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
-# OPTIONS
+## OPTIONS
 
 **-V**, **\--version**
 
@@ -125,7 +116,7 @@ chmod ugo+x markov.sh
 > Process each passed file as an algorithm sequence rather than an
 > algorithm.
 
-# CONFIGURATION
+## CONFIGURATION
 
 The configuration allows each following option to be set or unset if not
 passed as an argument:
@@ -156,14 +147,14 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-# EXAMPLES
+## EXAMPLES
 
 **markov**
 
-# AUTHOR
+## AUTHOR
 
 **markov**
 
-# SEE ALSO
+## SEE ALSO
 
 **markov**
