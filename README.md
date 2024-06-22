@@ -24,13 +24,6 @@ markov - Markov algorithms interpreter and their largest library
 
 ```
 
-# INSTALLATION
-```bash
-git clone https://github.com/faraui/markov.git
-cd markov
-chmod ugo+x markov.sh
-```
-
 # STRUCTURE
 ```diff
 [  22K] markov
@@ -71,6 +64,13 @@ chmod ugo+x markov.sh
 ~~ ~~ [  173] summation
 
 33 files, 3 directories
+```
+
+# INSTALLATION
+```bash
+git clone https://github.com/faraui/markov.git
+cd markov
+chmod ugo+x markov.sh
 ```
 
 # SYNOPSIS
