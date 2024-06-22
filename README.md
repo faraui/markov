@@ -3,12 +3,24 @@
 markov - Markov algorithms interpreter and their largest library
 
 ## DESCRIPTION
-...
+Markov algorithms is a turing-complete *word* rewriting system. Hereafter, the description relates specifically to the Markov algorithms alteration implemented in this software.
+
+A *word* is defined as a finite sequence of alphanumericals (i. e. A-Z, a-z and 0-9). An *empty word* is defined as a word with no alphanumericals. It is denoted by `^` and its lenght is 0.
+
+A word **S** is said to be a *subword* of a word **W**, if **W = XSY**. For any word **W**, **W = ^W**.
+
+A *substitution rule* is defined as two words separated with either space-dot-space or space-comma-space. The first one is called a *terminal substitution rule*, while the second one is called *non-terminal substitution rule*. In these terms, "substituion" can be ommited and it is hereafter. A *execution result of a rule* **L . R** or **L , R** on the word **W** is defined as a word **W**, in which the very first, leftmost subword **L** is substituted with **R**. If an execution result of a rule **L . R** or **L , R** on a certain word **W** is equal to the **W** itself (i. e., if **L** is not a subword of **W**), it is said that this execution rule is *unworkable* on word **W**.
+
+A *Markov algorithm* is a finite list of rules, one per line. Its execution on word **W** is described as follows:
+1. If each rule is unworkable on word **W**, the word **W** is the result of the current Markov algorithm execution.
+2. If at least one rule is not unworkable on word **W**, execute the very first of them on word **W**.
+3. If a rule such executed was terminal, the resulted word **A** is the result of the current Markov algorithm execution.
+4. If a rule such executed was non-terminal, process the resulted word **A** as a word **W**.
 
 ```forth
             ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┬╌╌╌╌╌╌╌╌╌ Out1
-            ╎ 1             ╎ 1                    ╎ 1
-   In ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2      2 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 2
+            ╎ 2             ╎ 2                    ╎ 2
+   In ┏╍╍╍╍╍┷╍╍╍╍╍┓ 1 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 1      1 ┏╍╍╍╍╍┷╍╍╍╍╍┓ 1
 ╌┬╌╌╌╌┨  L1 x R1  ┠╌╌╌┨  L2 x R2  ┠╌╌╌ ╸╸╸╌╌╌┨  Ln x Rn  ┠╌╌╌ Out2
  │    ┗╍╍╍╍╍┯╍╍╍╍╍┛   ┗╍╍╍╍╍┯╍╍╍╍╍┛          ┗╍╍╍╍╍┯╍╍╍╍╍┛
  │          ╎ 3             ╎ 3                    ╎ 3
@@ -97,20 +109,6 @@ chmod ugo+x markov.sh
 > > a\) **markov** output is not directed into the terminal\
 > > b) user **echo** can not process escape-sequences
 
-**-c**, **\--count**
-
-> Display the total number of applied substituion rules once their
-> execution is complete.
-
-**-v**, **\--verbose**
-
-> Display local changes in the processed word after each substituion
-> rule is applied.\
-> Consider this option to be unset if a lot of substitution rules are
-> expected to be applied.\
-> To know whether to use this option, launch **markov** with
-> **-c**\|**\--count** option in advance.
-
 **-s**, **\--sequence**
 
 > Process each passed file as an algorithm sequence rather than an
@@ -122,7 +120,6 @@ The configuration allows each following option to be set or unset if not
 passed as an argument:
 
 > **\--no-colors**\
-> **\--verbose**\
 > **\--sequence**
 
 Configuration is done by editing the configuration file.\
@@ -138,9 +135,9 @@ launched, if any of these are true:
 > b) the configuration file is empty\
 > c) the configuration file is not present\
 
-In lines 9-11 of **markov.sh**, the data of the configuration file that
+In lines 10 of **markov.sh**, the data of the configuration file that
 is thus set can be modified.\
-In the unmodified **markov.sh**, this data is **NO_COLORS=0; VERBOSE=0;
+In the unmodified **markov.sh**, this data is **NO_COLORS=0;
 SEQUENCE=0**.\
 With such configuration file data, each corresponding option is unset if
 not passed as an argument.\
