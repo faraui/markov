@@ -18,7 +18,7 @@ do case "$ARGUMENT" in
      echo 'markov v1.0.0'
      exit ;;
    '-u'|'--usage')
-     echo "Usage: $0 [GNU or POSIX style options] file ..."
+     echo "Usage: $0 [POSIX or GNU style options] file ..."
      exit ;;
    '-?'|'-h'|'--help')
      echo "$0 [-V|--version] [-u|--usage] [-?|-h|--help] [-rc|--reset-config]"
