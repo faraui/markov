@@ -18,7 +18,7 @@ do case "$ARGUMENT" in
      echo 'markov v1.0.0'
      exit ;;
    '-u'|'--usage')
-     echo "Usage: $0 [POSIX or GNU style options] file ..."
+     echo "Usage: $0 [GNU or POSIX style options] file ..."
      exit ;;
    '-?'|'-h'|'--help')
      echo "$0 [-V|--version] [-u|--usage] [-?|-h|--help] [-rc|--reset-config]"
@@ -80,7 +80,8 @@ then if [ -f /etc/os-release ]
           if ! [ -z "$ID_like" ]
           then ID=$ID_like
           fi
-          sudo echo "Installing MAWK ..." >&3
+          sudo echo -n 'Installing MAWK ...'
+          INSTALLING='y'
           case "$ID" in
           'debian'|'ubuntu') sudo apt-get install -y mawk > /dev/null ;;
           'fedora') sudo dnf install -y mawk > /dev/null ;;
@@ -89,8 +90,11 @@ then if [ -f /etc/os-release ]
      fi
 fi
 if command -v mawk &> /dev/null
-then echo "MAWK installation is complete" >&3
-else echo "${R}Error.${RS} Install MAWK manually as it cannot be installed automatically." >&2
+then if [[ -n $INSTALLING ]]
+     then echo ' OK'
+     fi
+else echo ' FAIL'
+     echo "${R}Error.${RS} Install MAWK manually as it cannot be installed automatically." >&2
      exit 2
 fi
 
