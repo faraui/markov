@@ -15,13 +15,33 @@ source $CONFIG
 for ARGUMENT in "$@"
 do case "$ARGUMENT" in
    '-V'|'--version')
-     echo "markov v1.0.0"
+     echo 'markov v1.0.0'
      exit ;;
    '-u'|'--usage')
      echo "Usage: $0 [GNU or POSIX style options] file ..."
      exit ;;
    '-?'|'-h'|'--help')
-     echo "Help: Any ACM A. M. Turing Award..."
+     echo './markov.sh [-V|--version] [-u|--usage] [-?|-h|--help] [-rc|--reset-config]'
+     echo './markov.sh [-nc|--no-colors] [-c|--count] [-v|--verbose] <algorithm-file> ...'
+     echo './markov.sh [-nc|--no-colors] [-c|--count] [-v|--verbose] <-s|--sequence> algorithm-sequence-file ...'
+     echo
+     echo
+     echo '-V, --version'
+     echo '    Display a version message and exit immediately.'
+     echo
+     echo '-u, --usage'
+     echo '    Display a usage message and exit immediately.'
+     echo
+     echo '-?, -h, --help'
+     echo '    Display a help message and exit immediately.'
+     echo
+     echo '-nc, --no-colors'
+     echo '    Disable font colors and styles.'
+     echo '    They are disabled whether or not this option is set, if any of these are true:'
+     echo '        a) markov output is not directed into the terminal'
+     echo '        b) user echo can not process escape-sequences'
+     echo '-s, --sequence'
+     echo '    Process each passed file as an algorithm sequence rather than an algorithm.'
      exit ;;
    '-rc'|'--reset-config')
      echo -n > $CONFIG
