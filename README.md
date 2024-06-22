@@ -142,8 +142,9 @@ not passed as an argument.\
 opposite result for an option.
 
 ## EXAMPLES
+Do not let this example distract you from the fact that for all sequences, the number separator is a letter **a**. 
 
-**markov**
+![Example](https://github.com/faraui/markov/assets/170811164/dabfa198-21ee-4dc8-ac08-e54c968fd222)
 
 ## AUTHOR
 
