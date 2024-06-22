@@ -63,7 +63,7 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 ~~ ~~ [  176] substraction
 ~~ ~~ [  173] summation
 
-33 files, 3 directories
+30 files, 3 directories
 ```
 
 ## INSTALLATION
