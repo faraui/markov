@@ -21,9 +21,9 @@ do case "$ARGUMENT" in
      echo "Usage: $0 [GNU or POSIX style options] file ..."
      exit ;;
    '-?'|'-h'|'--help')
-     echo './markov.sh [-V|--version] [-u|--usage] [-?|-h|--help] [-rc|--reset-config]'
-     echo './markov.sh [-nc|--no-colors] [-c|--count] [-v|--verbose] <algorithm-file> ...'
-     echo './markov.sh [-nc|--no-colors] [-c|--count] [-v|--verbose] <-s|--sequence> algorithm-sequence-file ...'
+     echo "$0 [-V|--version] [-u|--usage] [-?|-h|--help] [-rc|--reset-config]"
+     echo "$0 [-nc|--no-colors] [-c|--count] [-v|--verbose] <algorithm-file> ..."
+     echo "$0 [-nc|--no-colors] [-c|--count] [-v|--verbose] <-s|--sequence> algorithm-sequence-file ..."
      echo
      echo
      echo '-V, --version'
