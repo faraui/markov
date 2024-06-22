@@ -6,8 +6,8 @@ echo >> $CONFIG
 sed -i '/^[[:space:]]*$/d' $CONFIG
 if [ ! -s $CONFIG ]
 then mkdir -p $(dirname $CONFIG)
-# Default: NO_COLORS=0; VERBOSE=0; SEQUENCE=0
-     echo "NO_COLORS=0; VERBOSE=0; SEQUENCE=0" > $CONFIG
+# Default: NO_COLORS=0; SEQUENCE=0
+     echo "NO_COLORS=0; SEQUENCE=0" > $CONFIG
 fi
 source $CONFIG
 
@@ -28,8 +28,6 @@ do case "$ARGUMENT" in
      echo "Reset of the config file $CONFIG is done"
      exit ;;
    '-nc'|'--no-colors') NO_COLORS=1 ;;
-   '-c'|'--count') COUNT=1 ;;
-   '-v'|'--verbose') VERBOSE=1 ;;
    '-s'|'--sequence') SEQUENCE=1 ;;
    *)
      if [ -f "$ARGUMENT" ]
@@ -47,12 +45,12 @@ done
 
 # Declaring variables of escape-sequences if they are processable and requested
 if [ -t 1 ] && [ "\033[0m" != $(echo -e "\033[0m") ] && [ $NO_COLORS -eq 0 ]
-then RS="\033[0m" # Reset all styles and colors
+then RS="\033[0m"  # Reset all styles and colors
      BLD="\033[1m" # Set bold style
      UND="\033[4m" # Set underline style
-     R="\033[31m" # Set red color
-     B="\033[34m" # Set blue color
-     P="\033[35m" # Set purple color
+     R="\033[31m"  # Set red color
+     B="\033[34m"  # Set blue color
+     P="\033[35m"  # Set purple color
 fi
 
 # MAWK installation if requiered
@@ -177,6 +175,6 @@ done
 
 # Interpreting input word with approriate options
 for ALG in "${ALGORITHMS[@]}"
-do WORD="$(./interp.awk WORD=$WORD $ALG)"
+do WORD="$(mawk -f interp.awk -v WORD=$WORD $ALG)"
 done
 echo $WORD
