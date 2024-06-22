@@ -68,7 +68,7 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 
 ## INSTALLATION
 ```bash
-git clone https://github.com/faraui/markov.git
+git clone -q https://github.com/faraui/markov.git
 cd markov
 chmod ugo+x markov.sh
 ```
