@@ -143,7 +143,9 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-## EXAMPLES
-Do not let these examples distract you from the fact that for all sequences, the number separator is a letter **a**.
+## DEMONSTRATION
+### MANUAL
+![manual](https://github.com/faraui/markov/assets/170811164/a8ab3dae-be88-411e-828c-c9711bd96aec)
+### EXAMPLES
+![examples](https://github.com/faraui/markov/assets/170811164/9b9dd6ae-772b-40e9-ad2c-3a1b1871d19f)
 
-![123](https://github.com/faraui/markov/assets/170811164/d14150f5-c7c8-4c24-9b70-90976df8c9fe)
