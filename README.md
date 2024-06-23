@@ -29,11 +29,12 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 
 ## STRUCTURE
 ```diff
-[  25K] markov
+[  31K] markov
 !! [  753] LICENSE.txt
 ~~ [ 2.7K] README.md
 ~~ [  225] interp.awk
-++ [   6K] markov.sh
+~~ [   6K] markov.1
+++ [ 6.1K] markov.sh
 -- [  10K] algorithms
 ~~ ~~ [   22] binary_to_preunary
 ~~ ~~ [ 6.6K] decimal_to_dekimal
@@ -52,12 +53,12 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 ~~ ~~ [    6] summation
 ~~ ~~ [   42] unary_compare
 ~~ ~~ [  503] unary_to_dekimal
--- [ 1.7K] sequences
+-- [ 1.8K] sequences
 ~~ ~~ [  124] binary_to_decimal
 ~~ ~~ [  101] compare
 ~~ ~~ [  190] division
 ~~ ~~ [  235] factorial
-~~ ~~ [  167] greatest_common_divisor
+~~ ~~ [  187] greatest_common_divisor
 ~~ ~~ [  196] multiplication
 ~~ ~~ [  213] power
 ~~ ~~ [  176] substraction
