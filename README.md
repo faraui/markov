@@ -95,6 +95,10 @@ chmod ugo+x markov.sh
 
 > Display a help message and exit immediately.
 
+**-rc**, **--reset-config**
+
+> Set a configuration file data automatically.
+
 **-nc**, **\--no-colors**
 
 > Disable font colors and styles.\
