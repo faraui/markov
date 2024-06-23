@@ -146,11 +146,3 @@ Do not let this example distract you from the fact that for all sequences, the n
 
 ![123](https://github.com/faraui/markov/assets/170811164/d14150f5-c7c8-4c24-9b70-90976df8c9fe)
 
-
-## AUTHOR
-
-**markov**
-
-## SEE ALSO
-
-**markov**
