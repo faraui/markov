@@ -2,6 +2,8 @@
 
 markov - Markov algorithms interpreter and their largest library
 
+![manual](https://github.com/faraui/markov/assets/170811164/a8ab3dae-be88-411e-828c-c9711bd96aec)
+
 ## DESCRIPTION
 Markov algorithms is a turing-complete string rewriting system. Hereafter, the description relates specifically to the Markov algorithms alteration implemented in this software.
 
@@ -144,9 +146,5 @@ not passed as an argument.\
 **1** written respectively in the configuration file will give the
 opposite result for an option.
 
-## DEMONSTRATION
-### MANUAL
-![manual](https://github.com/faraui/markov/assets/170811164/a8ab3dae-be88-411e-828c-c9711bd96aec)
-### EXAMPLES
+## EXAMPLES
 ![examples](https://github.com/faraui/markov/assets/170811164/9b9dd6ae-772b-40e9-ad2c-3a1b1871d19f)
-
