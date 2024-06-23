@@ -1,0 +1,213 @@
+.TH MARKOV 1 2024-06-13
+
+.SH NAME
+markov \- Markov algorithms interpreter and their largest library
+
+.SH SYNOPSIS
+.B markov
+[\fB\-V\fP|\fB\--version\fP]
+[\fB\-u\fP|\fB\--usage\fP]
+[\fB\-?\fP|\fB\-h\fP|\fB\--help\fP]
+[\fB\-rc\fP|\fB\--reset-config\fP]
+.br
+.B markov
+[\fB\-nc\fP|\fB\--no-colors\fP]
+\fIalgorithm\-file\fP ...
+.br
+.B markov
+[\fB\-nc\fP|\fB\--no-colors\fP]
+\fB\-s\fP|\fB\--sequence\fP
+\fIalgorithm-sequence\-file\fP ...
+
+.SH DESCRIPTION
+Markov algorithms is a turing-complete string rewriting system used in theoretical and educational purposes.
+.br
+Hereafter, the description relates to the Markov algorithms alteration implemented in this software.
+
+A \fIword\fP is defined as a finite sequence of alphanumericals (i. e. A-Z, a-z and 0-9).
+.br
+An \fIempty word\fP is defined as a word with no alphanumericals. An empty word is denoted by ^.
+.br
+A word \fBS\fP is said to be a \fIsubword\fP of a word \fBW\fP, if \fBW = XSY\fP. For any word \fBW\fP, \fBW = ^W = W^ = ^W^\fP.
+
+A \fIrule\fP is defined as two words separated with either space-dot-space or space-comma-space.
+.br
+The first one is called a \fIterminal rule\fP. The second one is called \fInon-terminal rule\fP.
+.br
+An \fIexecution result of a rule\fP \fBL . R\fP or \fBL , R\fP on the word \fBW\fP is defined as a word \fBW\fP, in which the very first, leftmost subword \fBL\fP is substituted with \fBR\fP. If an execution result of a rule \fBL . R\fP or \fBL , R\fP on a certain word \fBW\fP is equal to the \fBW\fP itself (i. e., if \fBL\fP is not a subword of \fBW\fP), it is said that this execution rule is \fIunworkable\fP on word \fBW\fP.
+
+A \fIMarkov algorithm\fP is a finite list of rules, one per line. Its execution on word \fBW\fP is described as follows:
+.RS
+1. If each rule is unworkable on word \fBW\fP, the word \fBW\fP is the result of the current Markov algorithm execution.
+.br
+2. If at least one rule is not unworkable on word \fBW\fP, execute the very first of them on word \fBW\fP.
+.br
+3. If an executed rule was terminal, its result is also the result of the current Markov algorithm execution.
+.br
+4. If an executed rule was non-terminal, process its result as a word \fBW\fP.
+
+            ┌───────────────┬───────────────────────┬───────── Out1
+.br
+            │ 2             │ 2                     │ 2
+.br
+   In ┏━━━━━┷━━━━━┓ 1 ┏━━━━━┷━━━━━┓ 1       1 ┏━━━━━┷━━━━━┓ 1
+.br
+─┬────┨  L1 x R1  ┠───┨  L2 x R2  ┠────***────┨  Ln x Rn  ┠─── Out2
+.br
+ │    ┗━━━━━┯━━━━━┛   ┗━━━━━┯━━━━━┛           ┗━━━━━┯━━━━━┛
+.br
+ │          │ 3             │ 3                     │ 3
+.br
+ └──────────┴───────────────┴───────────────────────┘
+
+.SH OPTIONS
+.RE
+\fB\-V\fP, \fB\--version\fP
+.RS
+Display a version message and exit immediately.
+
+.RE
+\fB\-u\fP, \fB\--usage\fP
+.RS
+Display a usage message and exit immediately.
+
+.RE
+\fB\-?\fP, \fB\-h\fP, \fB\--help\fP
+.RS
+Display a help message and exit immediately.
+
+.RE
+\fB\-nc\fP, \fB\--no-colors\fP
+.RS
+Disable font colors and styles.
+.br
+They are disabled whether or not this option is set, if any of these are true:
+.RS
+a) \fBmarkov\fP output is not directed into the terminal
+.br
+b) user \fBecho\fP can not process escape-sequences
+
+.RE
+.RE
+\fB\-s\fP, \fB\--sequence\fP
+.RS
+Process each passed file as an algorithm sequence rather than an algorithm.
+
+.SH CONFIGURATION
+.RE
+The configuration allows each following option to be set or unset if not passed as an argument:
+.RS
+\fB\--no-colors\fP
+.br
+\fB\--sequence\fP
+
+.RE
+Configuration is done by editing the configuration file.
+.br
+The absolute path of the configuration file is \fB~/.config/markov/markov.conf\fP.
+
+The configuration file is set automatically once \fBmarkov\fP is launched, if any of these are true:
+.RS
+a) option \fB\-rc\fP|\fB\--reset-config\fP is passed
+.br
+b) the configuration file is empty
+.br
+c) the configuration file is not present
+.br
+
+.RE
+The data of the configuration file that is thus set is \fBNO_COLORS=0; SEQUENCE=0\fP.
+.br
+With such configuration file data, each corresponding option is unset if not passed as an argument.
+.br
+\fB1\fP written respectively in the configuration file will give the opposite result for an option.
+
+.SH FILES
+\fBmarkov\fP is provided with the library of Markov algorithms and their sequences.
+.br
+These are located at \fB~/.config/markov/library/\fP and are as follows:
+
+├── algorithms
+.br
+│   ├── binary_to_preunary
+.br
+│   ├── decimal_to_dekimal
+.br
+│   ├── dekimal_to_decimal
+.br
+│   ├── dekimal_to_unary
+.br
+│   ├── division
+.br
+│   ├── factorial
+.br
+│   ├── greatest_common_divisor
+.br
+│   ├── lenght
+.br
+│   ├── multiplication
+.br
+│   ├── neumann
+.br
+│   ├── power
+.br
+│   ├── prefix
+.br
+│   ├── substraction
+.br
+│   ├── suffix
+.br
+│   ├── summation
+.br
+│   ├── unary_compare
+.br
+│   └── unary_to_dekimal
+.br
+└── sequences
+    ├── binary_to_decimal
+    ├── compare
+    ├── division
+    ├── factorial
+    ├── greatest_common_divisor
+    ├── multiplication
+    ├── power
+    ├── substraction
+    └── summation
+
+For each sequence, except of \fBbinary_to_decimal\fP and \fBfactorial\fP, an input word is two decimal numbers separated with \fBa\fP. 
+
+.SH EXAMPLES
+\fBmarkov -s binary_to_decimal\fP
+.br
+Input word: 11101010110101
+.br
+15029
+
+\fBmarkov -s compare\fP
+.br
+Input word: 23687a6472
+.br
+>
+
+\fBmarkov -s division\fP
+.br
+Input word: 2837a234
+.br
+12
+
+\fBmarkov -s factorial\fP
+.br
+Input word: 7
+.br
+5040
+
+\fBmarkov -s power\fP
+.br
+Input word: 2a13
+8192
+
+.SH AUTHOR
+Ruslan Abbas Al Faraui <github.com/faraui>.
+
+.SH SEE ALSO
+\fBgrep\fP(1), \fBsed\fP(1), \fBtr\fP(1), \fBsort\fP(1), \fBmawk\fP(1), \fBgawk\fP(1).
