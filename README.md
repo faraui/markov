@@ -68,8 +68,8 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 
 ## INSTALLATION
 ```bash
-git clone -q https://github.com/faraui/markov.git
-cd markov
+git clone -q https://github.com/faraui/markov.git && \
+cd markov && \
 chmod ugo+x markov.sh
 ```
 
@@ -77,10 +77,8 @@ chmod ugo+x markov.sh
 
 **./markov.sh** \[**-V**\|**\--version**\] \[**-u**\|**\--usage**\]
 \[**-?**\|**-h**\|**\--help**\] \[**-rc**\|**\--reset-config**\]\
-**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-c**\|**\--count**\]
-\[**-v**\|**\--verbose**\] *algorithm-file* \...\
-**./markov.sh** \[**-nc**\|**\--no-colors**\] \[**-c**\|**\--count**\]
-\[**-v**\|**\--verbose**\] **-s**\|**\--sequence**
+**./markov.sh** \[**-nc**\|**\--no-colors**\] *algorithm-file* \...\
+**./markov.sh** \[**-nc**\|**\--no-colors**\] **-s**\|**\--sequence**
 *algorithm-sequence-file* \...
 
 ## OPTIONS
