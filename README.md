@@ -31,7 +31,7 @@ A *Markov algorithm* is a finite list of rules, one per line. Its execution on w
 ```diff
 [  31K] markov
 !! [  753] LICENSE.txt
-~~ [ 2.7K] README.md
+~~ [ 5.8K] README.md
 ~~ [  225] interp.awk
 ~~ [   6K] markov.1
 ++ [ 6.1K] markov.sh
